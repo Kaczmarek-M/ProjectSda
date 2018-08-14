@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
@@ -21,7 +22,7 @@ public class Music {
 
     private String bandName;
     private String albumName;
-    private int publicationDate;
+    private LocalDate publicationDate;
     private String carrier;
 
 }
