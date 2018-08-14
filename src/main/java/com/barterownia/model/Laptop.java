@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "laptop")
 @Getter
 @Setter
 @AllArgsConstructor

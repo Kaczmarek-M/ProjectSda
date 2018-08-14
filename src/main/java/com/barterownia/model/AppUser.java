@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
+@Entity(name = "app_user")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -23,7 +23,7 @@ public class AppUser {
 
     private int privilege;
 
-    @ManyToOne
+    @OneToMany
     private Set<Auction> auctions;
 
 }

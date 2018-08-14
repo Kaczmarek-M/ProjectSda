@@ -4,13 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "auction")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -20,8 +17,10 @@ public class Auction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @OneToOne
     private AppUser user;
 
+    @OneToOne
     private Item item;
 
     private LocalDateTime expirationDate;
