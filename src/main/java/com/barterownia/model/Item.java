@@ -1,4 +1,4 @@
-package model;
+package com.barterownia.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,30 +8,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Auction {
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private AppUser user;
+    private long itemId;
 
-    private Item item;
+    private long categoryId;
 
-    private LocalDateTime expirationDate;
-
-    private String title;
-
-    private String description;
-
-    private boolean isAccepted;
-
-    private boolean isSold;
-
+    private long estimatedPrice;
 }
