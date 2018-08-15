@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity (name= "video_games")
+@Entity (name= "video_game")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,8 +20,8 @@ public class VideoGame {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private long id;
+    
     private String name;
     private long price;
     private String genre;
