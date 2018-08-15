@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity (name= "video_game")
+@Entity (name= "video_games")
 @Getter
 @Setter
 @AllArgsConstructor
