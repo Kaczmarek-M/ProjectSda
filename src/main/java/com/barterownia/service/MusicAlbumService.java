@@ -26,15 +26,15 @@ public class MusicAlbumService {
     }
 
     public List<MusicAlbum> findByBandName(String bandName){
-        return musicAlbumRepository.findAlbumByBand(bandName);
+        return musicAlbumRepository.findAllByBandName(bandName);
     }
 
     public List<MusicAlbum> findByAlbumName(String albumName){
-        return musicAlbumRepository.findAlbumByName(albumName);
+        return musicAlbumRepository.findAllByAlbumName(albumName);
     }
 
     public List<MusicAlbum> findByCarrier (String carrier){
-        return musicAlbumRepository.findAlbumByCarrier(carrier);
+        return musicAlbumRepository.findAllByCarrier(carrier);
     }
 
 }

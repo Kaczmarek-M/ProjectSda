@@ -9,9 +9,9 @@ import java.util.List;
 @Repository
 public interface MusicAlbumRepository extends JpaRepository<MusicAlbum, Long> {
 
-    List<MusicAlbum> findAlbumByBand(String bandName);
+    List<MusicAlbum> findAllByBandName(String bandName);
 
-    List<MusicAlbum> findAlbumByName(String albumName);
+    List<MusicAlbum> findAllByAlbumName(String albumName);
 
-    List<MusicAlbum> findAlbumByCarrier(String carrier);
+    List<MusicAlbum> findAllByCarrier(String carrier);
 }
