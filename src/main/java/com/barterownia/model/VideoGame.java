@@ -23,7 +23,6 @@ public class VideoGame {
     private long id;
     
     private String name;
-    private long price;
     private String genre;
     private String platform;
     private String publisher;
