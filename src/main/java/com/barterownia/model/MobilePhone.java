@@ -24,7 +24,7 @@ public class MobilePhone {
     private String name;
 
     private String processor;
-    private String ram;
+    private Long ram;
     private Float screenSize;
     private String simlock;
     private String color;
@@ -32,4 +32,23 @@ public class MobilePhone {
     private Boolean isWarranty;
     private LocalDate warranty;
 
+    public MobilePhone(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "MobilePhone{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", processor='" + processor + '\'' +
+                ", ram='" + ram + '\'' +
+                ", screenSize=" + screenSize +
+                ", simlock='" + simlock + '\'' +
+                ", color='" + color + '\'' +
+                ", isNew=" + isNew +
+                ", isWarranty=" + isWarranty +
+                ", warranty=" + warranty +
+                '}';
+    }
 }
