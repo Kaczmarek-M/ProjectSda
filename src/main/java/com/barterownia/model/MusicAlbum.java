@@ -10,11 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
-@Entity(name = "music")
+@Entity(name = "music_album")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Music {
+public class MusicAlbum {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
