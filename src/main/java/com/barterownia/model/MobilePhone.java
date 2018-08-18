@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "mobile_phones")
+@Entity(name = "mobile_phone")
 public class MobilePhone {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
