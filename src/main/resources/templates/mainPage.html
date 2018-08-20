@@ -1,26 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="links">
-    <meta charset="UTF-8">
-    <title>Barter</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+<head th:replace="fragments :: head">
 </head>
 <body>
 
-<header th:fragment="header">
-    <div class="container">
-        <div id="branding">
-            <h1>Logo picture</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a th:href="">Home</a></li>
-                <li><a th:href="">Search</a></li>
-                <li><a th:href="">Log In</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<div th:replace="header :: header"></div>
 
 <section id="main">
     <div class="container">
@@ -51,17 +36,7 @@
     </div>
 </section>
 
-<footer th:fragment="footer">
-    <div class="container">
-        <nav>
-            <ul>
-                <li><a th:href="">FAQ</a></li>
-                <li><a th:href="">Contact</a></li>
-                <li><a th:href="">Statutes</a></li>
-            </ul>
-        </nav>
-    </div>
-</footer>
+<div th:replace="footer::footer"></div>
 
 </body>
 </html>
