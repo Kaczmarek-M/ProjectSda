@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="sidebar">
+
+            <aside id="sidebar">
+                <h1>Select by category</h1>
+                <form>
+                    <input type="radio" name="mobilePhone" value="mobilePhone"> Mobile Phone <br>
+                    <input type="radio" name="laptop" value="laptop"> Laptop <br>
+                    <input type="radio" name="videoGame" value="videoGame"> Video Game <br>
+                    <input type="radio" name="musicAlbum" value="musicAlbum"> Music Album <br>
+                    <button type="submit" class="select">Select</button>
+                </form>
+
+                <h1>Select by price</h1>
+                <form>
+                    <input type="text" placeholder="from">
+                    <input type="text" placeholder="to"> <br>
+                    <button type="submit" class="select">Select</button>
+                </form>
+            </aside>
+
+</div>
+</body>
+</html>

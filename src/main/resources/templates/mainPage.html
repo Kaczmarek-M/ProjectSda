@@ -11,27 +11,11 @@
     <div class="container">
 
         <article id="showcase">
-            <h1>Profesional Barter Website</h1>
+            <h1>Professional Barter Website</h1>
             <p>Web Description</p>
         </article>
 
-        <aside id="sidebar">
-            <h1>Select by category</h1>
-            <form>
-                <input type="radio" name="mobilePhone" value="mobilePhone"> Mobile Phone <br>
-                <input type="radio" name="laptop" value="laptop"> Laptop <br>
-                <input type="radio" name="videoGame" value="videoGame"> Video Game <br>
-                <input type="radio" name="musicAlbum" value="musicAlbum"> Music Album <br>
-                <button type="submit" class="select">Select</button>
-            </form>
-
-            <h1>Select by price</h1>
-            <form>
-                <input type="text" placeholder="from">
-                <input type="text" placeholder="to"> <br>
-                <button type="submit" class="select">Select</button>
-            </form>
-        </aside>
+        <div th:replace="sidebar::sidebar"></div>
 
     </div>
 </section>
