@@ -8,25 +8,19 @@ import java.util.List;
 
 @Repository
 public interface VideoGameRepository extends JpaRepository<VideoGame, Long> {
-/*
-TODO CRUD methods
-public void addGame(VideoGame videoGame);
-public void deleteGame(long id);
-public void editGame(long id, VideoGame videoGame);
-*/
 
-    List<VideoGame> findVideoGameByTitle(String title);
+    List<VideoGame> findAllByTitleContaining (String title);
 
-    List<VideoGame> findByPlatform(String platform);
+    List<VideoGame> findAllByGenreContaining(String genre);
 
-    List<VideoGame> findByGenre(String genre);
+    List<VideoGame> findAllByPlatformContaining(String platform);
 
-    List<VideoGame> findByPrice(long min, long max);
+    List<VideoGame> findAllByPublisherContaining(String publisher);
 
-    List<VideoGame> findNew(boolean yes);
+    List<VideoGame> findAllByNewIsTrue();
 
-    List<VideoGame> findUsed(boolean no);
+    List<VideoGame> findAllByNewIsFalse();
 
-    List<VideoGame> findByPegi(int pegi);
+    List<VideoGame> findAllByPegiContaining(int pegi);
 
 }

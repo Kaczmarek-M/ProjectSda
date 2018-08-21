@@ -21,7 +21,8 @@ public class VideoGame {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String name;
+    private String title;
+    private long price;
     private String genre;
     private String platform;
     private String publisher;
