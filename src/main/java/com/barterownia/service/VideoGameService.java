@@ -34,6 +34,7 @@ public class VideoGameService {
     public List<VideoGame> findByPlatform(String platform) {
         return videoGameRepository.findAllByPlatformContaining(platform);
     }
+
     public List<VideoGame> findByPublisher(String publisher) {
         return videoGameRepository.findAllByPublisherContaining(publisher);
     }
@@ -47,7 +48,7 @@ public class VideoGameService {
     }
 
     public List<VideoGame> findByPegi(int pegi) {
-        return videoGameRepository.findAllByPegiContaining(pegi);
+        return videoGameRepository.findAllByPegiEquals(pegi);
     }
 
     public void addVideoGame(VideoGame videoGame) {
@@ -80,7 +81,7 @@ public class VideoGameService {
                 updatedVideoGame.setPublisher(videoGame.getPublisher());
             }
 
-            if (videoGame.getPegi() >= 0) {
+            if (videoGame.getPegi() != null) {
                 updatedVideoGame.setPegi(videoGame.getPegi());
             }
 

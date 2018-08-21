@@ -20,6 +20,6 @@ public interface VideoGameRepository extends JpaRepository<VideoGame, Long> {
 
     List<VideoGame> findAllByIsNewIsTrue();
 
-    List<VideoGame> findAllByPegiContaining(int pegi);
+    List<VideoGame> findAllByPegiEquals(int pegi);
 
 }
