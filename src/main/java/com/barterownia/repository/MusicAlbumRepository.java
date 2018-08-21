@@ -4,14 +4,17 @@ import com.barterownia.model.MusicAlbum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
 public interface MusicAlbumRepository extends JpaRepository<MusicAlbum, Long> {
 
-    List<MusicAlbum> findAllByBandName(String bandName);
+    List<MusicAlbum> findAllByBandNameContaining(String bandName);
 
-    List<MusicAlbum> findAllByAlbumName(String albumName);
+    List<MusicAlbum> findAllByAlbumNameContaining(String albumName);
 
     List<MusicAlbum> findAllByCarrier(String carrier);
+
+    List<MusicAlbum> findAllByPublicationDateIsBetween(LocalDate min, LocalDate max);
 }
