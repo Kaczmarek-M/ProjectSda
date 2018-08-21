@@ -1,67 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="links">
-    <meta charset="UTF-8">
-    <title>Barter</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+<head th:replace="fragments :: head">
 </head>
 <body>
 
-<header th:fragment="header">
-    <div class="container">
-        <div id="branding">
-            <h1>Logo picture</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a th:href="">Home</a></li>
-                <li><a th:href="">Search</a></li>
-                <li><a th:href="">Log In</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<div th:replace="header :: header"></div>
 
 <section id="main">
     <div class="container">
 
         <article id="showcase">
-            <h1>Profesional Barter Website</h1>
+            <h1>Professional Barter Website</h1>
             <p>Web Description</p>
         </article>
 
-        <aside id="sidebar">
-            <h1>Select by category</h1>
-            <form>
-                <input type="radio" name="mobilePhone" value="mobilePhone"> Mobile Phone <br>
-                <input type="radio" name="laptop" value="laptop"> Laptop <br>
-                <input type="radio" name="videoGame" value="videoGame"> Video Game <br>
-                <input type="radio" name="musicAlbum" value="musicAlbum"> Music Album <br>
-                <button type="submit" class="select">Select</button>
-            </form>
-
-            <h1>Select by price</h1>
-            <form>
-                <input type="text" placeholder="from">
-                <input type="text" placeholder="to"> <br>
-                <button type="submit" class="select">Select</button>
-            </form>
-        </aside>
+        <div th:replace="sidebar::sidebar"></div>
 
     </div>
 </section>
 
-<footer th:fragment="footer">
-    <div class="container">
-        <nav>
-            <ul>
-                <li><a th:href="">FAQ</a></li>
-                <li><a th:href="">Contact</a></li>
-                <li><a th:href="">Statutes</a></li>
-            </ul>
-        </nav>
-    </div>
-</footer>
+<div th:replace="footer::footer"></div>
 
 </body>
 </html>
