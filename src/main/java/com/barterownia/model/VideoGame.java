@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity (name= "video_game")
+@Entity(name = "video_game")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,12 +21,12 @@ public class VideoGame {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    
     private String name;
     private String genre;
     private String platform;
     private String publisher;
     private boolean isNew;
     private int pegi;
+
 
 }
