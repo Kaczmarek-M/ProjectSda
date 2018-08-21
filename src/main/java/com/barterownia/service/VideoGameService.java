@@ -6,38 +6,86 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VideoGameService {
 
+
     @Autowired
-    private VideoGameRepository videoGameRepository;
+    public VideoGameRepository videoGameRepository;
 
-    public List<VideoGame> findVideoGameByTitle(String title){
-        return videoGameRepository.findVideoGameByTitle(title);
+    public List<VideoGame> findAll() {
+        return videoGameRepository.findAll();
     }
 
-    public List<VideoGame> findByPlatform (String platform) {
-        return videoGameRepository.findByPlatform(platform);
+    public Optional<VideoGame> findByID(long id) {
+        return videoGameRepository.findById(id);
     }
 
-    public List<VideoGame> findByGenre (String genre) {
-        return videoGameRepository.findByGenre(genre);
+    public List<VideoGame> findVideoGameByTitle(String title) {
+        return videoGameRepository.findAllByTitleContaining(title);
     }
 
-    public List<VideoGame> findByPriceCompartment(long min, long max)  {
-        return videoGameRepository.findByPrice(min, max);
+    public List<VideoGame> findByGenre(String genre) {
+        return videoGameRepository.findAllByGenreContaining(genre);
     }
 
-    public List<VideoGame> findNew (boolean yes) {
-        return videoGameRepository.findNew(yes);
+    public List<VideoGame> findByPlatform(String platform) {
+        return videoGameRepository.findAllByPlatformContaining(platform);
+    }
+    public List<VideoGame> findByPublisher(String publisher) {
+        return videoGameRepository.findAllByPublisherContaining(publisher);
     }
 
-    public List<VideoGame> findUsed (boolean no) {
-        return  videoGameRepository.findUsed(no);
+    public List<VideoGame> findNew() {
+        return videoGameRepository.findAllByNewIsTrue();
     }
 
-    public List<VideoGame> findByPegi (int pegi) {
-        return videoGameRepository.findByPegi(pegi);
+    public List<VideoGame> findUsed() {
+        return videoGameRepository.findAllByNewIsFalse();
     }
+
+    public List<VideoGame> findByPegi(int pegi) {
+        return videoGameRepository.findAllByPegiContaining(pegi);
+    }
+
+    public void addVideoGame(VideoGame videoGame) {
+        videoGameRepository.save(videoGame);
+    }
+
+    public void deleteById(Long id) {
+        videoGameRepository.deleteById(id);
+    }
+
+    public void updateVideoGame(VideoGame videoGame) {
+        Optional<VideoGame> optionalVideoGame = videoGameRepository.findById((videoGame.getId()));
+
+        if (optionalVideoGame.isPresent()) {
+            VideoGame updatedVideoGame = optionalVideoGame.get();
+
+            if (videoGame.getTitle() != null) {
+                updatedVideoGame.setTitle(videoGame.getTitle());
+            }
+
+            if (videoGame.getGenre() != null) {
+                updatedVideoGame.setGenre(videoGame.getGenre());
+            }
+
+            if (videoGame.getPlatform() != null) {
+                updatedVideoGame.setPlatform(videoGame.getPlatform());
+            }
+
+            if (videoGame.getPublisher() != null) {
+                updatedVideoGame.setPublisher(videoGame.getPublisher());
+            }
+
+            if (videoGame.getPegi() >= 0) {
+                updatedVideoGame.setPegi(videoGame.getPegi());
+            }
+
+            videoGameRepository.save(updatedVideoGame);
+        }
+    }
+
 }
