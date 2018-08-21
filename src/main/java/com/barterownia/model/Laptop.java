@@ -1,6 +1,7 @@
 package com.barterownia.model;
 
 
+import com.sun.org.apache.bcel.internal.generic.LNEG;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,14 +24,37 @@ public class Laptop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long id;
+
     private String name;
-    private String motherboard;
+
     private String processor;
-    private String hardDrive;
-    private String RAM;
+    private Long ramMb;
+    private Long hardDriveMb;
+    private Float screenSize;
+    private String motherboard;
     private String graphicsCard;
     private LocalDate dateOfProduction;
+    private Boolean isNew;
+    private Boolean isWarranty;
 
+    public Laptop (String name) {this.name = name;}
 
+    @Override
+    public String toString() {
+        return "Laptop{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", processor='" + processor + '\'' +
+                ", ramMb=" + ramMb +
+                ", hardDriveMb=" + hardDriveMb +
+                ", screenSize=" + screenSize +
+                ", motherboard='" + motherboard + '\'' +
+                ", graphicsCard='" + graphicsCard + '\'' +
+                ", dateOfProduction=" + dateOfProduction +
+                ", isNew=" + isNew +
+                ", isWarranty=" + isWarranty +
+                '}';
+    }
 }
