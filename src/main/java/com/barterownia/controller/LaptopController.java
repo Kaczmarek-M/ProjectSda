@@ -61,13 +61,13 @@ public class LaptopController {
         return laptopService.findByProcessor(processor);
     }
 
-    @GetMapping(path = "/findByMotherboard/{motherboard")
+    @GetMapping(path = "/findByMotherboard/{motherboard}")
     @ResponseBody
     public List<Laptop> findMotherboard(@PathVariable(name = "motherboard") String motherboard) {
         return laptopService.findByMotherboard(motherboard);
     }
 
-    @GetMapping(path = "/findByGraphicsCard/{graphicsCard")
+    @GetMapping(path = "/findByGraphicsCard/{graphicsCard}")
     @ResponseBody
     public List<Laptop> findGraphicsCard(@PathVariable(name = "graphicsCard") String graphicsCard) {
         return laptopService.findByGraphicsCard(graphicsCard);
