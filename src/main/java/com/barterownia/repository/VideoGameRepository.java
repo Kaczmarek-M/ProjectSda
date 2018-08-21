@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface VideoGameRepository extends JpaRepository<VideoGame, Long> {
 
     List<VideoGame> findAllByTitleContaining (String title);
@@ -17,9 +16,9 @@ public interface VideoGameRepository extends JpaRepository<VideoGame, Long> {
 
     List<VideoGame> findAllByPublisherContaining(String publisher);
 
-    List<VideoGame> findAllByNewIsTrue();
+    List<VideoGame> findAllByIsNewIsFalse();
 
-    List<VideoGame> findAllByNewIsFalse();
+    List<VideoGame> findAllByIsNewIsTrue();
 
     List<VideoGame> findAllByPegiContaining(int pegi);
 

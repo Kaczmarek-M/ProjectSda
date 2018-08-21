@@ -22,12 +22,11 @@ public class VideoGame {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String title;
-    private long price;
     private String genre;
     private String platform;
     private String publisher;
-    private boolean isNew;
-    private int pegi;
+    private Boolean isNew;
+    private Integer pegi;
 
 
 }

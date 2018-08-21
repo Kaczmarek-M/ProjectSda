@@ -13,7 +13,7 @@ public class VideoGameService {
 
 
     @Autowired
-    public VideoGameRepository videoGameRepository;
+    private VideoGameRepository videoGameRepository;
 
     public List<VideoGame> findAll() {
         return videoGameRepository.findAll();
@@ -39,11 +39,11 @@ public class VideoGameService {
     }
 
     public List<VideoGame> findNew() {
-        return videoGameRepository.findAllByNewIsTrue();
+        return videoGameRepository.findAllByIsNewIsTrue();
     }
 
     public List<VideoGame> findUsed() {
-        return videoGameRepository.findAllByNewIsFalse();
+        return videoGameRepository.findAllByIsNewIsFalse();
     }
 
     public List<VideoGame> findByPegi(int pegi) {
