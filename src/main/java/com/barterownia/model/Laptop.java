@@ -1,7 +1,6 @@
 package com.barterownia.model;
 
 
-import com.sun.org.apache.bcel.internal.generic.LNEG;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity(name = "laptop")
 @Getter
