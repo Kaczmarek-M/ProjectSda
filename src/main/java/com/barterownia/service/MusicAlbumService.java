@@ -5,7 +5,9 @@ import com.barterownia.repository.MusicAlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MusicAlbumService {
@@ -26,15 +28,45 @@ public class MusicAlbumService {
     }
 
     public List<MusicAlbum> findByBandName(String bandName){
-        return musicAlbumRepository.findAllByBandName(bandName);
+        return musicAlbumRepository.findAllByBandNameContaining(bandName);
     }
 
     public List<MusicAlbum> findByAlbumName(String albumName){
-        return musicAlbumRepository.findAllByAlbumName(albumName);
+        return musicAlbumRepository.findAllByAlbumNameContaining(albumName);
     }
 
     public List<MusicAlbum> findByCarrier (String carrier){
         return musicAlbumRepository.findAllByCarrier(carrier);
+    }
+
+    public void editAlbum (MusicAlbum musicAlbum){
+        Optional<MusicAlbum> optionalMusicAlbum = musicAlbumRepository.findById(musicAlbum.getId());
+
+        if(optionalMusicAlbum.isPresent()){
+            MusicAlbum editMusicAlbum = optionalMusicAlbum.get();
+
+            if(musicAlbum.getAlbumName() != null){
+                editMusicAlbum.setAlbumName(musicAlbum.getAlbumName());
+            }
+
+            if(musicAlbum.getBandName() != null){
+                editMusicAlbum.setBandName(musicAlbum.getBandName());
+            }
+
+            if(musicAlbum.getCarrier() != null){
+                editMusicAlbum.setCarrier(musicAlbum.getCarrier());
+            }
+
+            if(musicAlbum.getPublicationDate() != null){
+                editMusicAlbum.setPublicationDate(musicAlbum.getPublicationDate());
+            }
+
+            musicAlbumRepository.save(editMusicAlbum);
+        }
+    }
+
+    public List<MusicAlbum> findByPublicationDateBetweenTwoDates(LocalDate min, LocalDate max){
+        return musicAlbumRepository.findAllByPublicationDateIsBetween(min, max);
     }
 
 }

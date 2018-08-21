@@ -7,11 +7,18 @@ import java.util.List;
 
 public interface MobilePhoneRepository extends JpaRepository<MobilePhone, Long> {
     List<MobilePhone> findAllByNameContaining(String name);
+
     List<MobilePhone> findAllByIsNewIsTrue();
+
     List<MobilePhone> findAllByIsNewIsFalse();
+
     List<MobilePhone> findAllByIsWarrantyIsTrue();
+
     List<MobilePhone> findAllByColorContaining(String color);
+
     List<MobilePhone> findAllBySimlockContaining(String operator);
+
     List<MobilePhone> findAllByRamIsBetween(Long min, Long max);
+
     List<MobilePhone> findAllByScreenSizeIsBetween(Float min, Float max);
 }

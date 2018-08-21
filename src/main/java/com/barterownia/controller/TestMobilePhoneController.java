@@ -13,10 +13,21 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping(path = "/mobilePhone/")
 public class TestMobilePhoneController {
 
     @Autowired
     private MobilePhoneService mobilePhoneService;
+
+    @RequestMapping(path="/")
+    public String home(){
+        return "mainPage";
+    }
+
+    @RequestMapping(path="/auction")
+    public String auction(){
+        return "auction";
+    }
 
     @RequestMapping(path = "/findAll")
     @ResponseBody
