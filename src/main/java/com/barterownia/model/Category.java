@@ -19,6 +19,8 @@ public class Category {
 
     private String name;
 
+    private String tableName;
+
     @OneToMany
     private Set<Item> items;
 

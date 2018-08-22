@@ -5,23 +5,33 @@
 <body>
 <div th:fragment="sidebar">
 
-            <aside id="sidebar">
-                <h1>Select by category</h1>
-                <form>
-                    <input type="radio" name="mobilePhone" value="mobilePhone"> Mobile Phone <br>
-                    <input type="radio" name="laptop" value="laptop"> Laptop <br>
-                    <input type="radio" name="videoGame" value="videoGame"> Video Game <br>
-                    <input type="radio" name="musicAlbum" value="musicAlbum"> Music Album <br>
-                    <button type="submit" class="select">Select</button>
-                </form>
+    <aside id="sidebar">
+        <h2>Kategorie:</h2>
 
-                <h1>Select by price</h1>
-                <form>
-                    <input type="text" placeholder="from">
-                    <input type="text" placeholder="to"> <br>
-                    <button type="submit" class="select">Select</button>
-                </form>
-            </aside>
+        <div class="btn-group-vertical">
+
+            <button onclick="location.href='/auction/list/mobile_phone'" type="button" class="btn btn-primary">Telefony
+                komórkowe
+            </button>
+
+            <button onclick="location.href='/auction/list/laptop'" type="button" class="btn btn-primary">Laptopy
+            </button>
+
+            <button onclick="location.href='/auction/list/video_game'" type="button" class="btn btn-primary">Gry
+            </button>
+
+            <button onclick="location.href='/auction/list/music_album'" type="button" class="btn btn-primary">Muzyka
+            </button>
+
+        </div>
+
+        <h2>Szukaj po cenie:</h2>
+        <form class="form-group">
+            <input type="text" placeholder="od">
+            <input type="text" placeholder="do"> <br>
+            <button type="submit" class="btn btn-default">Szukaj</button>
+        </form>
+    </aside>
 
 </div>
 </body>
