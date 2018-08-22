@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div th:replace="header :: header"></div>
+
+<section id="main">
+    <div class="container">
+
+        <article id="showcase">
+            <div th:each="auction : ${auctionList}">
+
+                <div th:if="${auction.isAccepted == true && auction.isSold == false}">
+                    <div class="row" th:onclick="'clicked('+'\'/auction/'+${auction.id}+'\')'">
+                        <div class="col-sm-2" th:text="${auction.item.estimatedPrice}"></div>
+                        <div class="col-sm-6" th:text="${auction.title}"></div>
+                        <div class="col-sm-4" th:text="${auction.user.username}"></div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </article>
+
+        <div th:replace="sidebar::sidebar"></div>
+
+    </div>
+</section>
+
+<div th:replace="footer::footer"></div>
+
+</body>
+</html>

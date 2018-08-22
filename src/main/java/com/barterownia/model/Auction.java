@@ -29,8 +29,8 @@ public class Auction {
 
     private String description;
 
-    private boolean isAccepted;
+    private Boolean isAccepted;
 
-    private boolean isSold;
+    private Boolean isSold;
 
 }
