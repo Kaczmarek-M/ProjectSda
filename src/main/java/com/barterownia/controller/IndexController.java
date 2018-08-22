@@ -1,22 +1,24 @@
 package com.barterownia.controller;
 
-import com.barterownia.model.MusicAlbum;
-import com.barterownia.service.MusicAlbumService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.time.LocalDate;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
 
-    @Autowired
-    private MusicAlbumService musicAlbumService;
-
-
-    @GetMapping(path = "/addMusic")
-    public void saveTest() {
-        musicAlbumService.addAlbum(new MusicAlbum(1L, "asd", "asd", LocalDate.now(), "CD"));
+    @RequestMapping(path="/faq")
+    public String faq(){
+        return "faq";
     }
+    @RequestMapping(path ="/contact")
+    public String contact(){
+        return "contact";
+    }
+    @RequestMapping(path = "/statutes")
+    public String statutes(){
+        return "rules";
+    }
+
+
+
 }
