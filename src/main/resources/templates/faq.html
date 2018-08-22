@@ -1,0 +1,90 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head th:replace="fragments :: head">-->
+<!--<title>Title</title>-->
+<!--</head>-->
+
+<!--<body class="text-center">-->
+<!--<div th:replace="header :: header"></div>-->
+<!--<div>-->
+<!--<main role="main" class="container">-->
+<!--<h1><b>FAQ</b></h1>-->
+<!--<p><button data-toggle="collapse" data-target="#demo">Czy sprzedajecie samochody</button><p/>-->
+
+<!--<div id="demo" class="collapse">-->
+<!--Nie jestesmy serwisem samochodowym.-->
+<!--</div>-->
+
+<!--</main>-->
+<!--</div>-->
+
+<!--<div th:replace="footer::footer"></div>-->
+<!--</body>-->
+
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+<div class="text-center">
+    <div th:replace="header :: header"></div>
+    <h2>FAQ</h2>
+    <p>Click on the button to toggle between showing and hiding answers.</p>
+
+    <button type="button" class="btn btn-info btn-block" data-toggle="collapse" data-target="#demo">Czy sprzedajecie
+        samochody?
+    </button>
+    <div id="demo" class="collapse">
+        Nie, nie sprzedajemy.
+    </div>
+
+
+    <button type="button" class="btn btn-info btn-block" data-toggle="collapse" data-target="#demo1">Moge zakupic u was
+        zwierzeta?
+    </button>
+    <div id="demo1" class="collapse">
+        Nie.
+    </div>
+
+    <button type="button" class="btn btn-info btn-block" data-toggle="collapse" data-target="#demo2">Czy znajde czesci
+        samochodowe?
+    </button>
+    <div id="demo2" class="collapse">
+        Nie.Nie jestesmy serwisem samochodowym.
+    </div>
+
+    <button type="button" class="btn btn-info btn-block" data-toggle="collapse" data-target="#demo3">Dlaczego nie moge znalezc
+        talerzy?
+    </button>
+    <div id="demo3" class="collapse">
+        Poniewaz nie prowadzimy sprzedazy ich.
+    </div>
+
+
+    <button type="button" class="btn btn-info btn-block" data-toggle="collapse" data-target="#demo4">Jestescie konkurencja dla
+        alegro?
+    </button>
+    <div id="demo4" class="collapse">
+        Oczywicie.
+    </div>
+
+    <button type="button" class="btn btn-info btn-block" data-toggle="collapse" data-target="#demo5">Sprzedaz tv prowadzicie?
+    </button>
+    <div id="demo5" class="collapse">
+        Wkrotce.
+    </div>
+    <div th:replace="footer::footer " style="bottom: auto"></div>
+    </body>
+
+
+</div>
+</html>
