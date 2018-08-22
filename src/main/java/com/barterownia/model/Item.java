@@ -16,7 +16,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private long itemId;
+    private Long itemId;
 
     @ManyToOne
     private Category category;
