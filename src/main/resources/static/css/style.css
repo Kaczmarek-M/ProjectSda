@@ -27,10 +27,6 @@ ul {
 
 /* Header **/
 header {
-    position: fixed;
-    right: 0;
-    top: 0;
-    left: 0;
     background: #35424a;
     color: #ffffff;
     padding-top: 30px;
@@ -84,11 +80,7 @@ header nav {
 
 /* Sidebar */
 aside{
-    position: fixed;
-    right: 0;
     top: 150px;
-    left: 0;
-    float: left;
     width: 10%;
     margin-top: 10px;
 }
