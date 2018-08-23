@@ -39,6 +39,10 @@ public class VideoGameService {
         return videoGameRepository.findAllByPublisherContaining(publisher);
     }
 
+    public Optional<VideoGame> findById(long id){
+        return videoGameRepository.findById(id);
+    }
+
     public List<VideoGame> findNew() {
         return videoGameRepository.findAllByIsNewIsTrue();
     }
