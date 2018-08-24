@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "item")
 @NoArgsConstructor
@@ -22,4 +23,5 @@ public class Item {
     private Category category;
 
     private long estimatedPrice;
+
 }

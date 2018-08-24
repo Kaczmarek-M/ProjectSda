@@ -1,9 +1,11 @@
 package com.barterownia.controller;
 
 import com.barterownia.model.Laptop;
+import com.barterownia.service.AuctionService;
 import com.barterownia.service.LaptopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,9 @@ public class LaptopController {
 
     @Autowired
     private LaptopService laptopService;
+
+    @Autowired
+    private AuctionService auctionService;
 
     @RequestMapping(path = "/findAll")
     @ResponseBody
@@ -100,4 +105,20 @@ public class LaptopController {
                                                @PathVariable(name = "max") LocalDate max) {
         return laptopService.findByDateOfProductionGreaterThanAndLessThan(min, max);
     }
+
+    @GetMapping(path = "/laptopList")
+    public String list(Model model) {
+        List<Laptop> laptopList = laptopService.getAllLaptops();
+        model.addAttribute("laptopList", laptopList);
+        return "laptopList";
+    }
+
+    @GetMapping(path = "/laptop/{id}")
+    public String list(@PathVariable(name = "id") Long laptopId, Model model) {
+        Optional<Laptop> laptopOpt= laptopService.getLaptopWithId(laptopId);
+        model.addAttribute("laptop", laptopOpt.get());
+        model.addAttribute("auction", laptopService.findAuctionByLaptop(laptopOpt.get()));
+        return "laptop";
+    }
+
 }

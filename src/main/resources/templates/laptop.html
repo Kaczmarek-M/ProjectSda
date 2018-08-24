@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: links">
+    <title>Title</title>
+</head>
+
+<body>
+<div th:replace="header :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div th:replace="sidebar::sidebar"></div>
+        </div>
+        <div class="text-center col-md-9">
+            <div th:object="${laptop}">
+                <h1><b>Tytuł aukcji</b></h1>
+
+                <div th:text="${laptop.getName()}"></div>
+                <div th:text="${laptop.getHardDriveMb()}"></div>
+                <div th:text="${laptop.getGraphicsCard()}"></div>
+                
+                <p class="lead" th:text="${auction.getDescription()}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments :: scripts"></div>
+</body>
+
+</html>
+

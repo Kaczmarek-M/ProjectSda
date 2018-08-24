@@ -1,38 +1,70 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+</head>
 
 <body>
 <div th:fragment="sidebar">
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-end px-3 mt-4 mb-1 text-muted">
+                        KATEGORIE
+                    </h6>
+                    <ul class="nav flex-column mb-3">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/auction/list/mobile_phone}">
+                                <span data-feather="smartphone"></span>
+                                Telefony komórkowe
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/auction/list/laptop}">
+                                <span data-feather="book"></span>
+                                Laptopy
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/auction/list/music_album}">
+                                <span data-feather="disc"></span>
+                                Muzyka
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/auction/list/video_game}">
+                                <span data-feather="crosshair"></span>
+                                Gry
+                            </a>
+                        </li>
+                    </ul>
 
-    <aside id="sidebar">
-        <h2>Kategorie:</h2>
-
-        <div class="btn-group-vertical">
-
-            <button onclick="location.href='/auction/list/mobile_phone'" type="button" class="btn btn-primary">Telefony
-                komórkowe
-            </button>
-
-            <button onclick="location.href='/auction/list/laptop'" type="button" class="btn btn-primary">Laptopy
-            </button>
-
-            <button onclick="location.href='/auction/list/video_game'" type="button" class="btn btn-primary">Gry
-            </button>
-
-            <button onclick="location.href='/auction/list/music_album'" type="button" class="btn btn-primary">Muzyka
-            </button>
-
+                    <ul class="nav nav-down flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/rules}">
+                                <span data-feather="file-text"></span>
+                                Regulamin
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/contact}">
+                                <span data-feather="phone"></span>
+                                Kontakt
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/faq}">
+                                <span data-feather="info"></span>
+                                FAQ
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            </main>
         </div>
-
-        <h2>Szukaj po cenie:</h2>
-        <form class="form-group">
-            <input type="text" placeholder="od">
-            <input type="text" placeholder="do"> <br>
-            <button type="submit" class="btn btn-default">Szukaj</button>
-        </form>
-    </aside>
-
+    </div>
 </div>
 </body>
 </html>

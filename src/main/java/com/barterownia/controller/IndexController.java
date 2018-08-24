@@ -7,19 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    @RequestMapping(path = "/faq")
-    public String faq() {
+    @RequestMapping(path="/faq")
+    public String faq(){
         return "faq";
     }
-
-    @RequestMapping(path = "/contact")
-    public String contact() {
+    @RequestMapping(path ="/contact")
+    public String contact(){
         return "contact";
     }
-
-    @RequestMapping(path = "/statutes")
-    public String statutes() {
-        return "rules";
+    @RequestMapping(path = "/rules")
+    public String statutes(){
+        return "/rules";
     }
 
     @GetMapping(path = "/")
