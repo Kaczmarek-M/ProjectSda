@@ -31,6 +31,7 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
                         "/",
                         "/home**",
                         "/faq",
+                        "/rules",
                         "/contact",
                         "/statutes",
                         "/webjars/**",
