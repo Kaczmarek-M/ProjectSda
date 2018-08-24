@@ -1,8 +1,10 @@
 package com.barterownia.service;
 
 import com.barterownia.model.AppUser;
+import com.barterownia.model.dto.NewUserDto;
 import com.barterownia.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,8 +15,22 @@ public class AppUserService {
     @Autowired
     private AppUserRepository userRepository;
 
-    public AppUser addUser(AppUser appUser) {
-        return userRepository.save(appUser);
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public boolean addUser(NewUserDto appUser) {
+
+        Optional<AppUser> userByUsername = userRepository.findAppUserByUsername(appUser.getUsername());
+
+        if (userByUsername.isPresent()) {
+            return false;
+        }
+
+        AppUser newUser = new AppUser(appUser.getUsername(), bCryptPasswordEncoder.encode(appUser.getPassword()), 0);
+
+        userRepository.save(newUser);
+
+        return true;
     }
 
     public Optional<AppUser> deleteUser(long id) {
@@ -28,14 +44,14 @@ public class AppUserService {
         return appUser;
     }
 
-    public Optional<AppUser> findByUsername(String username){
+    public Optional<AppUser> findByUsername(String username) {
         return userRepository.findAppUserByUsername(username);
     }
 
-    public Optional<AppUser> setUserPrivilege(long id, int privilege){
+    public Optional<AppUser> setUserPrivilege(long id, int privilege) {
         Optional<AppUser> user = userRepository.findById(id);
 
-        if (!user.isPresent()){
+        if (!user.isPresent()) {
             return Optional.empty();
         }
 

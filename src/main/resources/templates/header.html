@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
 
 <body>
 <div th:fragment="header">
@@ -8,7 +10,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a th:href="@{/mobilePhone/}">
+                    <a th:href="@{/home}">
                         <img src="https://image.ibb.co/ca1cVz/logo.jpg" alt="Barterownia" th:width="180">
                     </a>
                 </div>
@@ -40,23 +42,23 @@
                     <label>Logowanie</label>
                 </div>
                 <div class="modal-body">
-                    <form action="#">
+                    <form th:action="@{/lo}" method="post">
                         <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" class="form-control" id="email">
+                            <label for="username">Nazwa użytkownika:</label>
+                            <input name="password" type="text" class="form-control" id="username">
                         </div>
                         <div class="form-group">
-                            <label for="pwd">Hasło:</label>
-                            <input type="password" class="form-control" id="pwd">
+                            <label for="password">Hasło:</label>
+                            <input name="password" type="password" class="form-control" id="password">
                         </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox"> Zapamiętaj hasło</label>
-                        </div>
+                        <!--<div class="checkbox">-->
+                            <!--<label><input type="checkbox"> Zapamiętaj hasło</label>-->
+                        <!--</div>-->
                         <button type="submit" class="btn btn-default">Zaloguj</button>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">ZAREJESTRUJ</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" onclick="clicked('/user/register')">ZAREJESTRUJ</button>
                 </div>
             </div>
         </div>

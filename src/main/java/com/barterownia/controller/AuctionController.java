@@ -42,7 +42,7 @@ public class AuctionController {
         return "/auctionList";
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/get/{id}")
     public String getAuction(Model model, @PathVariable(name = "id") long id) {
 
         Optional<Auction> auctionOptional = auctionService.findById(id);

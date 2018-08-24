@@ -26,4 +26,9 @@ public class AppUser {
     @OneToMany
     private Set<Auction> auctions;
 
+    public AppUser(String username, String password, int privilege) {
+        this.username = username;
+        this.password = password;
+        this.privilege = privilege;
+    }
 }
