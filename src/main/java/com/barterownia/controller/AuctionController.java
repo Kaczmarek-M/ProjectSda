@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,12 +32,21 @@ public class AuctionController {
     @Autowired
     private VideoGameService videoGameService;
 
-    @GetMapping(path = "/list/{category}")
-    public String getAuctionList(Model model, @PathVariable(name = "category") String category) {
+    @GetMapping(path = "/list/category/{category}")
+    public String getAuctionListByCategory(Model model, @PathVariable(name = "category") String category) {
         List<Auction> byCategory = auctionService.findByCategory(category);
 
         model.addAttribute("auctionList", byCategory);
 
+
+        return "/auctionList";
+    }
+
+    @GetMapping(path = "/list/title")
+    public String getAuctionListByTitle(Model model, @RequestParam(name = "title") String title) {
+        List<Auction> byTitle = auctionService.findByTitleContaining(title);
+
+        model.addAttribute("auctionList", byTitle);
 
         return "/auctionList";
     }

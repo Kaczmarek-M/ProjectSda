@@ -38,4 +38,8 @@ public class AuctionService {
     public Auction findByProductAndCategory(Long laptopId) {
         return null;
     }
+
+    public List<Auction> findByTitleContaining(String title) {
+        return auctionRepository.findAllByTitleContaining(title);
+    }
 }
