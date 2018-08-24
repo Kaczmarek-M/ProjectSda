@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="fragments :: links">
+    <title>Title</title>
+</head>
+
+<body class="text-center">
+<div th:replace="header :: header"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div th:replace="sidebar::sidebar"></div>
+        </div>
+        <div class="col-md-9">
+
+            <div sec:authorize="hasRole('USER')">
+
+                <button th:onclick="'clicked(\'/auction/add\')'" class="btn btn-primary">Dodaj aukcje</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments::scripts"></div>
+</body>
+
+</html>

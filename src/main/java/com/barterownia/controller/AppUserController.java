@@ -48,4 +48,9 @@ public class AppUserController {
         return "redirect:/home?log=true";
     }
 
+    @GetMapping(path = "/panel")
+    public String userPanel(){
+        return "/userPanel";
+    }
+
 }
