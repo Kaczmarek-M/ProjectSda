@@ -9,7 +9,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity(name = "laptop")
 @Getter
@@ -17,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Laptop {
+public class Laptop implements AuctionFields{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,19 +43,19 @@ public class Laptop {
 
 
     @Override
-    public String toString() {
-        return "Laptop{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", processor='" + processor + '\'' +
-                ", ramMb=" + ramMb +
-                ", hardDriveMb=" + hardDriveMb +
-                ", screenSize=" + screenSize +
-                ", motherboard='" + motherboard + '\'' +
-                ", graphicsCard='" + graphicsCard + '\'' +
-                ", dateOfProduction=" + dateOfProduction +
-                ", isNew=" + isNew +
-                ", isWarranty=" + isWarranty +
-                '}';
+    public Map<String, Object> getFieldMap() {
+        Map<String,Object> fieldMap = new HashMap<>();
+
+        fieldMap.put("Processor",processor);
+        fieldMap.put("RAM",ramMb);
+        fieldMap.put("Hard Drive",hardDriveMb);
+        fieldMap.put("Screen Size",screenSize);
+        fieldMap.put("Motherboard",motherboard);
+        fieldMap.put("Graphics",graphicsCard);
+        fieldMap.put("Date of production",dateOfProduction);
+        fieldMap.put("Is new",isNew);
+        fieldMap.put("Has Warranty",isWarranty);
+
+        return fieldMap;
     }
 }
