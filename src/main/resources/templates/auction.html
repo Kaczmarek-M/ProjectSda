@@ -34,9 +34,11 @@
                 <ul>
                     <!--Pętla która iteruje po mapie zawierajacej pola-->
                     <div th:each="key: ${fieldMap.keySet()}">
-                        <!--Wypisanie wartosci z mapy:-->
-                        <!--key - nazwa pola np.'Graphics' potem wstawione '=' potem wartosc z mapy np.'AMD'-->
+                        <!--Sprawdza czy wartosc danego pola nie jest 'null'-->
                         <div th:if="${fieldMap.get(key) != null}">
+
+                            <!--Wypisanie wartosci z mapy:-->
+                            <!--key - nazwa pola np.'Graphics' potem wstawione '=' potem wartosc z mapy np.'AMD'-->
                             <span th:text="${key}"></span> = <span th:text="${fieldMap.get(key).toString()}"></span>
                         </div>
                     </div>
