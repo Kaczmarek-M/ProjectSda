@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity(name = "category")
 @NoArgsConstructor
@@ -20,9 +19,6 @@ public class Category {
     private String name;
 
     private String tableName;
-
-    @OneToMany
-    private Set<Item> items;
 
 
 }

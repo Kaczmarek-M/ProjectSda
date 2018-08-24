@@ -2,6 +2,7 @@ package com.barterownia.service;
 
 import com.barterownia.model.AppUser;
 import com.barterownia.repository.AppUserRepository;
+import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -37,18 +38,19 @@ public class AppUserDetailsService implements UserDetailsService {
                     appUser.getPassword(),
                     getRolesForUser(appUser));
         }
+
         throw new UsernameNotFoundException("Username not found");
     }
 
     private Collection<? extends GrantedAuthority> getRolesForUser(AppUser user) {
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+
         if (user.getPrivilege() > 2) {
             grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
         if (user.getPrivilege() > 1) {
             grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_RZECZOZNAWCA"));
         }
-
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
         return grantedAuthorities;

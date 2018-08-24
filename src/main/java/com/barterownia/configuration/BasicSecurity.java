@@ -7,11 +7,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
+@EnableWebSecurity
 public class BasicSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -27,7 +29,7 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(
                         "/",
-                        "/home",
+                        "/home**",
                         "/faq",
                         "/contact",
                         "/statutes",
@@ -37,17 +39,17 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
                         "/auction/**",
                         "/user/**"
                         ).permitAll()
-                .anyRequest()
-                .authenticated()
+                        .anyRequest()
+                        .authenticated()
                 .and().formLogin()
-                .loginPage("/home?log=true")
-                .defaultSuccessUrl("/home", true)
-                .permitAll()
+                    .loginPage("/user/login")
+                    .defaultSuccessUrl("/home", true)
+                    .permitAll()
                 .and().logout()
-                .clearAuthentication(true)
-                .logoutUrl("/logout")
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/home")
+                    .clearAuthentication(true)
+                    .logoutUrl("/logout")
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/home")
                 .invalidateHttpSession(true);
     }
 

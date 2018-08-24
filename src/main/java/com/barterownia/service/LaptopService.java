@@ -125,10 +125,4 @@ public class LaptopService {
         return laptopRepository.findById(laptopId);
     }
 
-    public Auction findAuctionByLaptop(Laptop laptop){
-        Category category = categoryRepository.findByName("laptop");
-        Item item = itemRepository.findByCategoryAndItemId(category, laptop.getId());
-
-        return auctionRepository.findByItem(item);
-    }
 }

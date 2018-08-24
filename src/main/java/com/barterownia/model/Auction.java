@@ -18,7 +18,7 @@ public class Auction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne
+    @OneToOne
     private AppUser user;
 
     @OneToOne

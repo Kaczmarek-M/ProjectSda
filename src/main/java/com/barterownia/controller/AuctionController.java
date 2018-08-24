@@ -37,7 +37,6 @@ public class AuctionController {
 
         model.addAttribute("auctionList", byCategory);
 
-        byCategory.forEach(System.out::print);
 
         return "/auctionList";
     }
@@ -61,8 +60,7 @@ public class AuctionController {
         if ("mobile_phone".equals(tableName)) {
             model.addAttribute("item", mobilePhoneService.findById(itemId));
         } else if ("laptop".equals(tableName)) {
-            return "redirect:/laptop/" + itemId;
-//            model.addAttribute("item",laptopService.findById(itemId));
+            model.addAttribute("item", laptopService.findById(itemId));
         } else if ("music_album".equals(tableName)) {
             model.addAttribute("item", musicAlbumService.findById(itemId));
         } else if ("video_game".equals(tableName)) {

@@ -1,29 +1,36 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: links">
 </head>
+
 <body>
-
-
+<div th:replace="header :: header"></div>
 <div class="container">
-    <form class="form-signin" th:action="@{/user/register}" th:object="${newUser}" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label th:for="username" class="sr-only">Username</label>
-        <input class="form-control" id="username" name="username" type="text" th:field="*{username}" placeholder="Username">
-        <label th:for="inputPassword" class="sr-only">Password</label>
-        <input class="form-control" type="password" id="password" name="password" th:field="*{password}" placeholder="Password">
-        <label th:for="inputPasswordConfirm" class="sr-only">Confirm Password</label>
-        <input class="form-control" type="password" id="passwordConfirm" th:field="*{confirmPassword}" placeholder="Confirm password">
+
+    <form th:action="@{/user/register}" method="post">
+        <div class="form-group">
+            <label for="username">Nazwa użytkownika:</label>
+            <input name="username" type="text" class="form-control" id="username"
+                   aria-describedby="emailHelp" placeholder="Wpisz nazwe uzytkownika">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Hasło:</label>
+            <input name="password" type="password" class="form-control" id="password"
+                   placeholder="Wpisz hasło">
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Potwierdź hasło:</label>
+            <input name="confirmPassword" type="password" class="form-control" id="confirmPassword"
+                   placeholder="Potwierdź hasło">
+        </div>
+        <div class="form-group">
         <p class="form-inline" style="color: red;" th:text="${failMsg}"></p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </div>
+        <button type="submit" class="btn btn-primary">Zarejestruj</button>
     </form>
-
 </div>
-
-
-
+<div th:replace="fragments::scripts" style="bottom: auto"></div>
 </body>
 </html>

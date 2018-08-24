@@ -13,6 +13,4 @@ public interface AuctionRepository extends JpaRepository<Auction, Long> {
 
     List<Auction> findAllByUser_Id(long userId);
 
-    Auction findByItem(Item item);
-
 }

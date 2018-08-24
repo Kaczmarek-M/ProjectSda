@@ -23,7 +23,7 @@ public class AppUser {
 
     private int privilege;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Auction> auctions;
 
     public AppUser(String username, String password, int privilege) {

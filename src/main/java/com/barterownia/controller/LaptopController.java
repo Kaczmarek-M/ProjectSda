@@ -117,7 +117,6 @@ public class LaptopController {
     public String list(@PathVariable(name = "id") Long laptopId, Model model) {
         Optional<Laptop> laptopOpt= laptopService.getLaptopWithId(laptopId);
         model.addAttribute("laptop", laptopOpt.get());
-        model.addAttribute("auction", laptopService.findAuctionByLaptop(laptopOpt.get()));
         return "laptop";
     }
 

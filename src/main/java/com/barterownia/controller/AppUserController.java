@@ -28,7 +28,7 @@ public class AppUserController {
 
         if (!newUserDto.getPassword().equals(newUserDto.getConfirmPassword())) {
             model.addAttribute("newUser", new NewUserDto());
-            model.addAttribute("failMsg", "Passwords don't match!");
+            model.addAttribute("failMsg", "Hasła są różne!");
             return "/register";
         }
 
@@ -36,11 +36,16 @@ public class AppUserController {
 
         if (!isNew) {
             model.addAttribute("newUser", new NewUserDto());
-            model.addAttribute("failMsg", "Username is taken!");
+            model.addAttribute("failMsg", "Nazwa użytkownika zajęta!");
             return "/register";
         }
 
-        return "redirect:/home?login=true";
+        return "redirect:/home?log=true";
+    }
+
+    @GetMapping(path = "/login")
+    public String login(){
+        return "redirect:/home?log=true";
     }
 
 }
