@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<head th:replace="fragments :: links">
+<title>Title</title>
+</head>
+
+<body class="text-center">
+<div th:replace="header :: header"></div>
+<div>
+<main role="main" class="container">
+<h1><b>Kontakt</b></h1>
+    <p><h3 style="color: blue">Biuro Barterownia:</h3>
+    <p>ul.Puławska 383,</p>
+    <p>02-801 Gdańsk<p>
+    <p>godz. pracy: poniedziałek-piątek 9:00-17:00</p>
+
+    <p><h3 style="color: blue">Sekretariat:</h3>
+    <p>tel. 22 462 82 20
+
+    <p><h3 style="color: blue">E-mail:</h3>
+    <p>barterownia@barterownia.pl
+
+    <p><h3 style="color: blue">Nr konta</h3>
+    <p>Bank Millennium 67 1168 2202 0000 0000 3524 0086
+
+</main>
+</div>
+
+<div th:replace="fragments::scripts"></div>
 </body>
+
 </html>

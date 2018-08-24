@@ -58,14 +58,15 @@ public class AuctionController {
         String tableName = auction.getItem().getCategory().getTableName();
         Long itemId = auction.getItem().getItemId();
 
-        if ("mobile_phone".equals(tableName)){
-            model.addAttribute("item",mobilePhoneService.findById(itemId));
-        }else if ("laptop".equals(tableName)){
-            model.addAttribute("item",laptopService.findById(itemId));
-        }else if ("music_album".equals(tableName)){
-            model.addAttribute("item",musicAlbumService.findById(itemId));
-        }else if ("video_game".equals(tableName)){
-            model.addAttribute("item",videoGameService.findById(itemId));
+        if ("mobile_phone".equals(tableName)) {
+            model.addAttribute("item", mobilePhoneService.findById(itemId));
+        } else if ("laptop".equals(tableName)) {
+            return "redirect:/laptop/" + itemId;
+//            model.addAttribute("item",laptopService.findById(itemId));
+        } else if ("music_album".equals(tableName)) {
+            model.addAttribute("item", musicAlbumService.findById(itemId));
+        } else if ("video_game".equals(tableName)) {
+            model.addAttribute("item", videoGameService.findById(itemId));
         }
 
         return "/auction";

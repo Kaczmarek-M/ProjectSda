@@ -35,4 +35,7 @@ public class AuctionService {
     }
 
 
+    public Auction findByProductAndCategory(Long laptopId) {
+        return null;
+    }
 }

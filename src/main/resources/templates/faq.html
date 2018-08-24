@@ -1,90 +1,86 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-
-<!--<head th:replace="fragments :: head">-->
-<!--<title>Title</title>-->
-<!--</head>-->
-
-<!--<body class="text-center">-->
-<!--<div th:replace="header :: header"></div>-->
-<!--<div>-->
-<!--<main role="main" class="container">-->
-<!--<h1><b>FAQ</b></h1>-->
-<!--<p><button data-toggle="collapse" data-target="#demo">Czy sprzedajecie samochody</button><p/>-->
-
-<!--<div id="demo" class="collapse">-->
-<!--Nie jestesmy serwisem samochodowym.-->
-<!--</div>-->
-
-<!--</main>-->
-<!--</div>-->
-
-<!--<div th:replace="footer::footer"></div>-->
-<!--</body>-->
-
-<!--</html>-->
-
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<head th:replace="fragments :: links">
 </head>
 
+<body>
+<div th:replace="header :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div th:replace="sidebar::sidebar"></div>
+        </div>
+        <div class="col-md-9">
+            <h2 class="text-center">FAQ</h2>
+            <div class="accordion mt-3" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                    aria-expanded="true" aria-controls="collapseOne">
+                                Czy sprzedajecie samochody?
+                            </button>
+                        </h5>
+                    </div>
 
-<div class="text-center">
-    <div th:replace="header :: header"></div>
-    <h2>FAQ</h2>
-    <p>Click on the button to toggle between showing and hiding answers.</p>
-
-    <button type="button" class="btn btn-info btn-block" data-toggle="collapse" data-target="#demo">Czy sprzedajecie
-        samochody?
-    </button>
-    <div id="demo" class="collapse">
-        Nie, nie sprzedajemy.
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                         data-parent="#accordionExample">
+                        <div class="card-body">
+                            Nie, nie sprzedajemy.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Moge zakupic u was zwierzeta?
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            Nie.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                    data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Czy znajde czesci samochodowe?
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                         data-parent="#accordionExample">
+                        <div class="card-body">
+                            Nie.Nie jestesmy serwisem samochodowym.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseFour">
+                                Dlaczego nie moge znalezc talerzy?
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingTwo"
+                         data-parent="#accordionExample">
+                        <div class="card-body">
+                            Poniewaz nie prowadzimy sprzedazy ich.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-    <button type="button" class="btn btn-info btn-block" data-toggle="collapse" data-target="#demo1">Moge zakupic u was
-        zwierzeta?
-    </button>
-    <div id="demo1" class="collapse">
-        Nie.
-    </div>
-
-    <button type="button" class="btn btn-info btn-block" data-toggle="collapse" data-target="#demo2">Czy znajde czesci
-        samochodowe?
-    </button>
-    <div id="demo2" class="collapse">
-        Nie.Nie jestesmy serwisem samochodowym.
-    </div>
-
-    <button type="button" class="btn btn-info btn-block" data-toggle="collapse" data-target="#demo3">Dlaczego nie moge znalezc
-        talerzy?
-    </button>
-    <div id="demo3" class="collapse">
-        Poniewaz nie prowadzimy sprzedazy ich.
-    </div>
-
-
-    <button type="button" class="btn btn-info btn-block" data-toggle="collapse" data-target="#demo4">Jestescie konkurencja dla
-        alegro?
-    </button>
-    <div id="demo4" class="collapse">
-        Oczywicie.
-    </div>
-
-    <button type="button" class="btn btn-info btn-block" data-toggle="collapse" data-target="#demo5">Sprzedaz tv prowadzicie?
-    </button>
-    <div id="demo5" class="collapse">
-        Wkrotce.
-    </div>
-    <div th:replace="footer::footer " style="bottom: auto"></div>
-    </body>
-
-
 </div>
+<div th:replace="fragments::scripts" style="bottom: auto"></div>
+</body>
 </html>

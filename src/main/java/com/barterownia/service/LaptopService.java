@@ -1,12 +1,17 @@
 package com.barterownia.service;
 
 
+import com.barterownia.model.Auction;
+import com.barterownia.model.Category;
+import com.barterownia.model.Item;
 import com.barterownia.model.Laptop;
+import com.barterownia.repository.AuctionRepository;
+import com.barterownia.repository.CategoryRepository;
+import com.barterownia.repository.ItemRepository;
 import com.barterownia.repository.LaptopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.naming.Name;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -15,8 +20,20 @@ import java.util.Optional;
 public class LaptopService {
 
     @Autowired
-
     private LaptopRepository laptopRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ItemRepository itemRepository;
+
+    @Autowired
+    private AuctionRepository auctionRepository;
+
+    @Autowired
+    public List<Laptop> getAllLaptops() {
+        return laptopRepository.findAll();}
 
     public void addLaptop(Laptop laptop) {
         laptopRepository.save(laptop);
@@ -102,5 +119,16 @@ public class LaptopService {
             }
             laptopRepository.save(updateLaptop);
         }
+    }
+
+    public Optional<Laptop> getLaptopWithId(Long laptopId) {
+        return laptopRepository.findById(laptopId);
+    }
+
+    public Auction findAuctionByLaptop(Laptop laptop){
+        Category category = categoryRepository.findByName("laptop");
+        Item item = itemRepository.findByCategoryAndItemId(category, laptop.getId());
+
+        return auctionRepository.findByItem(item);
     }
 }
