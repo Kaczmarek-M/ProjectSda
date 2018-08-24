@@ -36,7 +36,9 @@
                     <div th:each="key: ${fieldMap.keySet()}">
                         <!--Wypisanie wartosci z mapy:-->
                         <!--key - nazwa pola np.'Graphics' potem wstawione '=' potem wartosc z mapy np.'AMD'-->
-                        <span th:text="${key}"></span> = <span th:text="${fieldMap.get(key).toString()}"></span>
+                        <div th:if="${fieldMap.get(key) != null}">
+                            <span th:text="${key}"></span> = <span th:text="${fieldMap.get(key).toString()}"></span>
+                        </div>
                     </div>
                 </ul>
 
