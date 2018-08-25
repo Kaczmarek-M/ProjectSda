@@ -1,15 +1,16 @@
 package com.barterownia.controller;
 
+import com.barterownia.model.AppUser;
 import com.barterownia.model.Auction;
+import com.barterownia.model.dto.NewAuctionDto;
 import com.barterownia.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,4 +81,29 @@ public class AuctionController {
         return "/auction";
     }
 
+    @GetMapping(path = "/add")
+    public String getAddAuction(Model model) {
+        model.addAttribute("auction", new NewAuctionDto());
+
+        return "/addAuction";
+    }
+
+
+    @PostMapping(path = "/add")
+    public String addAuction(@RequestParam(name = "newAuctoin") NewAuctionDto newAuction, Principal principal) {
+
+        Auction auction = new Auction();
+        AppUser user = (AppUser) principal;
+        System.out.println(user);
+
+        auction.setDescription(newAuction.getDescription());
+        auction.setTitle(newAuction.getTitle());
+        auction.setExpirationDate(LocalDateTime.now().plusDays(newAuction.getDuration()));
+        auction.setItem(newAuction.getItem());
+        auction.setUser(user);
+
+        auctionService.addAuction(auction);
+
+        return "/userPanel";
+    }
 }
