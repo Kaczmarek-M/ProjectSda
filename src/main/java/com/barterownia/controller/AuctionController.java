@@ -1,7 +1,6 @@
 package com.barterownia.controller;
 
-import com.barterownia.model.AppUser;
-import com.barterownia.model.Auction;
+import com.barterownia.model.*;
 import com.barterownia.model.dto.NewAuctionDto;
 import com.barterownia.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,13 +68,21 @@ public class AuctionController {
         Long itemId = auction.getItem().getItemId();
 
         if ("mobile_phone".equals(tableName)) {
-            model.addAttribute("item", mobilePhoneService.findById(itemId));
+            Optional<MobilePhone> mobilePhone = mobilePhoneService.findById(itemId);
+            model.addAttribute("item", mobilePhone.get());
+            model.addAttribute("fieldMap", mobilePhone.get().getFieldMap());
         } else if ("laptop".equals(tableName)) {
-            model.addAttribute("item", laptopService.findById(itemId));
+            Optional<Laptop> laptop = laptopService.findById(itemId);
+            model.addAttribute("item", laptop.get());
+            model.addAttribute("fieldMap", laptop.get().getFieldMap());
         } else if ("music_album".equals(tableName)) {
-            model.addAttribute("item", musicAlbumService.findById(itemId));
+            Optional<MusicAlbum> musicAlbum = musicAlbumService.findById(itemId);
+            model.addAttribute("item", musicAlbum.get());
+            model.addAttribute("fieldMap", musicAlbum.get().getFieldMap());
         } else if ("video_game".equals(tableName)) {
-            model.addAttribute("item", videoGameService.findById(itemId));
+            Optional<VideoGame> videoGame = videoGameService.findById(itemId);
+            model.addAttribute("item", videoGame.get());
+            model.addAttribute("fieldMap", videoGame.get().getFieldMap());
         }
 
         return "/auction";

@@ -28,6 +28,7 @@ public class Auction {
 
     private String title;
 
+    @Column(length = 600)
     private String description;
 
     private Boolean isAccepted;
