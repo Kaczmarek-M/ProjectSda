@@ -8,13 +8,15 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NewAuctionDto {
+public class NewAuctionDTO {
 
     private String title;
 
     private String description;
 
-    private int duration;
+    private Integer duration;
 
-    private Item item;
+    private long estimatedPrice;
+
+    private long categoryId;
 }

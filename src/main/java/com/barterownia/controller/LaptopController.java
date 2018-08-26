@@ -1,21 +1,21 @@
 package com.barterownia.controller;
 
 import com.barterownia.model.Laptop;
+import com.barterownia.model.dto.NewLaptopDTO;
 import com.barterownia.service.AuctionService;
+import com.barterownia.service.ItemService;
 import com.barterownia.service.LaptopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping(path = "/laptop/")
 public class LaptopController {
 
     @Autowired
@@ -23,6 +23,9 @@ public class LaptopController {
 
     @Autowired
     private AuctionService auctionService;
+
+    @Autowired
+    private ItemService itemService;
 
     @RequestMapping(path = "/findAll")
     @ResponseBody
@@ -115,9 +118,27 @@ public class LaptopController {
 
     @GetMapping(path = "/laptop/{id}")
     public String list(@PathVariable(name = "id") Long laptopId, Model model) {
-        Optional<Laptop> laptopOpt= laptopService.getLaptopWithId(laptopId);
+        Optional<Laptop> laptopOpt = laptopService.getLaptopWithId(laptopId);
         model.addAttribute("laptop", laptopOpt.get());
         return "laptop";
+    }
+
+    @GetMapping(path = "/add")
+    public String getAddAuction(Model model) {
+
+        model.addAttribute("laptop", new NewLaptopDTO());
+
+        return "addLaptop";
+    }
+
+
+    @PostMapping(path = "/add")
+    public String addAuction(NewLaptopDTO laptopDTO) {
+
+        laptopService.addLaptop(laptopDTO);
+
+
+        return "/user/panel";
     }
 
 }

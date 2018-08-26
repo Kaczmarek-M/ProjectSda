@@ -1,7 +1,7 @@
 package com.barterownia.service;
 
 import com.barterownia.model.AppUser;
-import com.barterownia.model.dto.NewUserDto;
+import com.barterownia.model.dto.NewUserDTO;
 import com.barterownia.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,7 +18,7 @@ public class AppUserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public boolean addUser(NewUserDto appUser) {
+    public boolean addUser(NewUserDTO appUser) {
 
         Optional<AppUser> userByUsername = userRepository.findAppUserByUsername(appUser.getUsername());
 
@@ -44,8 +44,14 @@ public class AppUserService {
         return appUser;
     }
 
-    public Optional<AppUser> findByUsername(String username) {
+    public Optional<AppUser> findOptionalByUsername(String username) {
         return userRepository.findAppUserByUsername(username);
+    }
+
+    public AppUser findByUsername(String username) {
+        Optional<AppUser> userOptional = userRepository.findAppUserByUsername(username);
+        AppUser user = userOptional.get();
+        return user;
     }
 
     public Optional<AppUser> setUserPrivilege(long id, int privilege) {

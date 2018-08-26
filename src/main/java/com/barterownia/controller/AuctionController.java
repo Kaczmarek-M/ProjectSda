@@ -1,8 +1,7 @@
 package com.barterownia.controller;
 
-import com.barterownia.model.AppUser;
-import com.barterownia.model.Auction;
-import com.barterownia.model.dto.NewAuctionDto;
+import com.barterownia.model.*;
+import com.barterownia.model.dto.NewAuctionDTO;
 import com.barterownia.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +30,15 @@ public class AuctionController {
 
     @Autowired
     private VideoGameService videoGameService;
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private AppUserService appUserService;
+
+    @Autowired
+    private ItemService itemService;
 
     @GetMapping(path = "/list/category/{category}")
     public String getAuctionListByCategory(Model model, @PathVariable(name = "category") String category) {
@@ -69,13 +76,21 @@ public class AuctionController {
         Long itemId = auction.getItem().getItemId();
 
         if ("mobile_phone".equals(tableName)) {
-            model.addAttribute("item", mobilePhoneService.findById(itemId));
+            Optional<MobilePhone> mobilePhone = mobilePhoneService.findById(itemId);
+            model.addAttribute("item", mobilePhone.get());
+            model.addAttribute("fieldMap", mobilePhone.get().getFieldMap());
         } else if ("laptop".equals(tableName)) {
-            model.addAttribute("item", laptopService.findById(itemId));
+            Optional<Laptop> laptop = laptopService.findById(itemId);
+            model.addAttribute("item", laptop.get());
+            model.addAttribute("fieldMap", laptop.get().getFieldMap());
         } else if ("music_album".equals(tableName)) {
-            model.addAttribute("item", musicAlbumService.findById(itemId));
+            Optional<MusicAlbum> musicAlbum = musicAlbumService.findById(itemId);
+            model.addAttribute("item", musicAlbum.get());
+            model.addAttribute("fieldMap", musicAlbum.get().getFieldMap());
         } else if ("video_game".equals(tableName)) {
-            model.addAttribute("item", videoGameService.findById(itemId));
+            Optional<VideoGame> videoGame = videoGameService.findById(itemId);
+            model.addAttribute("item", videoGame.get());
+            model.addAttribute("fieldMap", videoGame.get().getFieldMap());
         }
 
         return "/auction";
@@ -83,27 +98,19 @@ public class AuctionController {
 
     @GetMapping(path = "/add")
     public String getAddAuction(Model model) {
-        model.addAttribute("auction", new NewAuctionDto());
+        model.addAttribute("auction", new NewAuctionDTO());
 
-        return "/addAuction";
+        List<Category> categories = categoryService.findAllCategories();
+        model.addAttribute("categories", categories);
+        return "addAuction";
     }
 
 
     @PostMapping(path = "/add")
-    public String addAuction(@RequestParam(name = "newAuctoin") NewAuctionDto newAuction, Principal principal) {
+    public String addAuction(NewAuctionDTO newAuction, Principal principal) {
+        auctionService.addAuction(newAuction, principal);
 
-        Auction auction = new Auction();
-        AppUser user = (AppUser) principal;
-        System.out.println(user);
 
-        auction.setDescription(newAuction.getDescription());
-        auction.setTitle(newAuction.getTitle());
-        auction.setExpirationDate(LocalDateTime.now().plusDays(newAuction.getDuration()));
-        auction.setItem(newAuction.getItem());
-        auction.setUser(user);
-
-        auctionService.addAuction(auction);
-
-        return "/userPanel";
+        return "/" + categoryService.findCategoryById(newAuction.getCategoryId()).getName() + "/add";
     }
 }

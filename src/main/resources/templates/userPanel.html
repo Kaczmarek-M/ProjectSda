@@ -6,7 +6,7 @@
     <title>Title</title>
 </head>
 
-<body class="text-center">
+<body>
 <div th:replace="header :: header"></div>
 
 <div class="container">
@@ -14,7 +14,7 @@
         <div class="col-md-3">
             <div th:replace="sidebar::sidebar"></div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 text-center">
 
             <div sec:authorize="hasRole('USER')">
 

@@ -43,7 +43,7 @@ public class MobilePhoneService {
     }
 
     public List<MobilePhone> findByRamGreaterThanAndLessThan(Long min, Long max) {
-        return mobilePhoneRepository.findAllByRamIsBetween(min, max);
+        return mobilePhoneRepository.findAllByRamMbIsBetween(min, max);
     }
 
     public List<MobilePhone> findAll() {
@@ -75,8 +75,8 @@ public class MobilePhoneService {
             if (mobilePhone.getProcessor() != null) {
                 updatedMobilePhone.setIsNew(mobilePhone.getIsNew());
             }
-            if (mobilePhone.getRam() != null) {
-                updatedMobilePhone.setRam(mobilePhone.getRam());
+            if (mobilePhone.getRamMb() != null) {
+                updatedMobilePhone.setRamMb(mobilePhone.getRamMb());
             }
             if (mobilePhone.getScreenSize() != null) {
                 updatedMobilePhone.setScreenSize(mobilePhone.getScreenSize());

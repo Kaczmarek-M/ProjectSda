@@ -18,7 +18,7 @@ public interface MobilePhoneRepository extends JpaRepository<MobilePhone, Long> 
 
     List<MobilePhone> findAllBySimlockContaining(String operator);
 
-    List<MobilePhone> findAllByRamIsBetween(Long min, Long max);
+    List<MobilePhone> findAllByRamMbIsBetween(Long min, Long max);
 
     List<MobilePhone> findAllByScreenSizeIsBetween(Float min, Float max);
 }

@@ -1,7 +1,6 @@
 package com.barterownia.controller;
 
-import com.barterownia.model.dto.NewUserDto;
-import com.barterownia.repository.AppUserRepository;
+import com.barterownia.model.dto.NewUserDTO;
 import com.barterownia.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,15 +18,15 @@ public class AppUserController {
 
     @GetMapping(path = "/register")
     public String getAddUser(Model model) {
-        model.addAttribute("newUser", new NewUserDto());
+        model.addAttribute("newUser", new NewUserDTO());
         return "/register";
     }
 
     @PostMapping(path = "/register")
-    public String addUser(Model model, NewUserDto newUserDto) {
+    public String addUser(Model model, NewUserDTO newUserDto) {
 
         if (!newUserDto.getPassword().equals(newUserDto.getConfirmPassword())) {
-            model.addAttribute("newUser", new NewUserDto());
+            model.addAttribute("newUser", new NewUserDTO());
             model.addAttribute("failMsg", "Hasła są różne!");
             return "/register";
         }
@@ -35,7 +34,7 @@ public class AppUserController {
         boolean isNew = appUserService.addUser(newUserDto);
 
         if (!isNew) {
-            model.addAttribute("newUser", new NewUserDto());
+            model.addAttribute("newUser", new NewUserDTO());
             model.addAttribute("failMsg", "Nazwa użytkownika zajęta!");
             return "/register";
         }

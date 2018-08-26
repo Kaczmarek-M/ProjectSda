@@ -5,6 +5,7 @@ import com.barterownia.model.Auction;
 import com.barterownia.model.Category;
 import com.barterownia.model.Item;
 import com.barterownia.model.Laptop;
+import com.barterownia.model.dto.NewLaptopDTO;
 import com.barterownia.repository.AuctionRepository;
 import com.barterownia.repository.CategoryRepository;
 import com.barterownia.repository.ItemRepository;
@@ -35,8 +36,20 @@ public class LaptopService {
     public List<Laptop> getAllLaptops() {
         return laptopRepository.findAll();}
 
-    public void addLaptop(Laptop laptop) {
-        laptopRepository.save(laptop);
+    public Laptop addLaptop(NewLaptopDTO newLaptopDTO) {
+        Laptop laptop = new Laptop();
+        laptop.setName(newLaptopDTO.getName());
+        laptop.setProcessor(newLaptopDTO.getProcessor());
+        laptop.setHardDriveMb(newLaptopDTO.getHardDriveMb());
+        laptop.setRamMb(newLaptopDTO.getRamMb());
+        laptop.setScreenSize(newLaptopDTO.getScreenSize());
+        laptop.setMotherboard(newLaptopDTO.getMotherboard());
+        laptop.setGraphicsCard(newLaptopDTO.getGraphicsCard());
+        laptop.setDateOfProduction(newLaptopDTO.getDateOfProduction());
+        laptop.setIsNew(newLaptopDTO.getIsNew());
+        laptop.setIsWarranty(newLaptopDTO.getIsWarranty());
+
+        return laptopRepository.save(laptop);
     }
     public void deleteById(Long id){
         laptopRepository.deleteById(id);
