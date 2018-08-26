@@ -19,7 +19,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Laptop implements AuctionFields{
+public class Laptop implements AuctionFields {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,23 +38,24 @@ public class Laptop implements AuctionFields{
     private Boolean isNew;
     private Boolean isWarranty;
 
-    public Laptop (String name) {this.name = name;}
-
+    public Laptop(String name) {
+        this.name = name;
+    }
 
 
     @Override
     public Map<String, Object> getFieldMap() {
-        Map<String,Object> fieldMap = new HashMap<>();
+        Map<String, Object> fieldMap = new HashMap<>();
 
-        fieldMap.put("Processor",processor);
-        fieldMap.put("RAM",ramMb);
-        fieldMap.put("Hard Drive",hardDriveMb);
-        fieldMap.put("Screen Size",screenSize);
-        fieldMap.put("Motherboard",motherboard);
-        fieldMap.put("Graphics",graphicsCard);
-        fieldMap.put("Date of production",dateOfProduction);
-        fieldMap.put("Is new",isNew);
-        fieldMap.put("Has Warranty",isWarranty);
+        fieldMap.put("Processor", processor);
+        fieldMap.put("RAM", ramMb);
+        fieldMap.put("Hard Drive", hardDriveMb);
+        fieldMap.put("Screen Size", screenSize);
+        fieldMap.put("Motherboard", motherboard);
+        fieldMap.put("Graphics", graphicsCard);
+        fieldMap.put("Date of production", dateOfProduction);
+        fieldMap.put("Is new", isNew);
+        fieldMap.put("Has Warranty", isWarranty);
 
         return fieldMap;
     }

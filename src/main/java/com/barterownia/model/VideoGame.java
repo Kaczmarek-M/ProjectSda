@@ -18,7 +18,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class VideoGame implements AuctionFields{
+public class VideoGame implements AuctionFields {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,14 +33,14 @@ public class VideoGame implements AuctionFields{
 
     @Override
     public Map<String, Object> getFieldMap() {
-        Map<String,Object> fieldMap = new HashMap<>();
+        Map<String, Object> fieldMap = new HashMap<>();
 
-        fieldMap.put("Title",title);
-        fieldMap.put("Genre",genre);
-        fieldMap.put("Platform",platform);
-        fieldMap.put("Publisher",publisher);
-        fieldMap.put("Is new",isNew);
-        fieldMap.put("Pegi",pegi);
+        fieldMap.put("Title", title);
+        fieldMap.put("Genre", genre);
+        fieldMap.put("Platform", platform);
+        fieldMap.put("Publisher", publisher);
+        fieldMap.put("Is new", isNew);
+        fieldMap.put("Pegi", pegi);
 
         return fieldMap;
     }

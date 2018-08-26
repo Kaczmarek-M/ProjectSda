@@ -18,7 +18,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "mobile_phone")
-public class MobilePhone implements AuctionFields{
+public class MobilePhone implements AuctionFields {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -41,16 +41,16 @@ public class MobilePhone implements AuctionFields{
 
     @Override
     public Map<String, Object> getFieldMap() {
-        Map<String,Object> fieldMap = new HashMap<>();
+        Map<String, Object> fieldMap = new HashMap<>();
 
-        fieldMap.put("Processor",processor);
-        fieldMap.put("RAM",ramMb);
-        fieldMap.put("Screen Size",screenSize);
-        fieldMap.put("Simlock",simlock);
-        fieldMap.put("Color",color);
-        fieldMap.put("Warranty date",warranty);
-        fieldMap.put("Is new",isNew);
-        fieldMap.put("Has Warranty",isWarranty);
+        fieldMap.put("Processor", processor);
+        fieldMap.put("RAM", ramMb);
+        fieldMap.put("Screen Size", screenSize);
+        fieldMap.put("Simlock", simlock);
+        fieldMap.put("Color", color);
+        fieldMap.put("Warranty date", warranty);
+        fieldMap.put("Is new", isNew);
+        fieldMap.put("Has Warranty", isWarranty);
 
         return fieldMap;
     }

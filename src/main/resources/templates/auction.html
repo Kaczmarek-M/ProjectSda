@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 
-<body class="text-center">
+<body>
 <div th:replace="header :: header"></div>
 
 <section id="main">
@@ -14,7 +14,7 @@
             <div class="col-md-3">
                 <div th:replace="sidebar::sidebar"></div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 text-center">
 
                 <!--TYTUŁ AUKCJI-->
                 <h1><b th:text="${auction.title}"></b></h1>
@@ -48,6 +48,7 @@
         </div>
     </div>
 </section>
+<div th:replace="fragments::scripts"></div>
 </body>
 
 </html>

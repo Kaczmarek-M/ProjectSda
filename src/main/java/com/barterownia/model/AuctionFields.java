@@ -4,5 +4,5 @@ import java.util.Map;
 
 public interface AuctionFields {
 
-    Map<String,Object> getFieldMap();
+    Map<String, Object> getFieldMap();
 }
