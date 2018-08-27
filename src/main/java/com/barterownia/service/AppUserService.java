@@ -1,6 +1,7 @@
 package com.barterownia.service;
 
 import com.barterownia.model.AppUser;
+import com.barterownia.model.Auction;
 import com.barterownia.model.dto.NewUserDTO;
 import com.barterownia.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,10 @@ public class AppUserService {
 
     }
 
+    public void addAuction(AppUser user, Auction auction) {
+        user.getAuctions().add(auction);
+        userRepository.save(user);
+    }
 }
 
 //ewa.herliczek@eurocash.pl

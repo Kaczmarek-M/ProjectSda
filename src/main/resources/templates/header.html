@@ -11,8 +11,8 @@
 <div th:fragment="header">
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" th:href="@{/home}">Barterownia</a>
-        <form th:action="@{/auction/list/title}" method="get">
-        <input class="form-control form-control-dark w-75" type="text" name="title" id="title" placeholder="Wpisz nazwę szukanego przedmiotu"
+        <form class="form-stretched" th:action="@{/auction/list/title}" method="get">
+        <input class="form-control form-control-dark" type="text" name="title" id="title" placeholder="Wpisz nazwę szukanego przedmiotu"
                aria-label="Search">
         </form>
             <button sec:authorize="isAnonymous()" type="button" class="btn btn-primary col-sm-3 col-md-1  ml-2 mr-2" data-toggle="modal"

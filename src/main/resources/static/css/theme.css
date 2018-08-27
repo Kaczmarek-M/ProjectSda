@@ -12,6 +12,10 @@ body {
     vertical-align: text-bottom;
 }
 
+.form-stretched{
+    width: 100%;
+}
+
 /*
  * Sidebar
  */

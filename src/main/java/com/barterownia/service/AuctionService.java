@@ -34,7 +34,6 @@ public class AuctionService {
 
         AppUser user = appUserService.findByUsername(newAuctionDTO.getUsername());
 
-
         item.setCategory(categoryService.findCategoryById(newAuctionDTO.getCategoryId()));
         item.setEstimatedPrice(newAuctionDTO.getEstimatedPrice());
         itemService.addItem(item);
@@ -48,6 +47,9 @@ public class AuctionService {
         auction.setUser(user);
 
         auction = auctionRepository.save(auction);
+
+        appUserService.addAuction(user, auction);
+
         return Optional.of(auction);
     }
 
