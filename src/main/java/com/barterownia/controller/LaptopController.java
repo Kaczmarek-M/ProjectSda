@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path = "/laptop/")
+@RequestMapping(path = "/laptop")
 public class LaptopController {
 
     @Autowired
@@ -124,21 +124,23 @@ public class LaptopController {
     }
 
     @GetMapping(path = "/add")
-    public String getAddAuction(Model model) {
+    public String getAddAuction(@RequestParam(name = "id") Long itemId, Model model) {
 
         model.addAttribute("laptop", new NewLaptopDTO());
+        model.addAttribute("item_id", itemId);
 
         return "addLaptop";
     }
 
 
     @PostMapping(path = "/add")
-    public String addAuction(NewLaptopDTO laptopDTO) {
+    public String addAuction(NewLaptopDTO laptopDTO, @RequestParam(name = "itemId") Long itemId) {
 
-        laptopService.addLaptop(laptopDTO);
+        System.out.println(laptopDTO.getDateOfProduction());
+        Laptop laptop = laptopService.addLaptop(laptopDTO);
+        itemService.updateItemId(itemId, laptop.getId());
 
-
-        return "/user/panel";
+        return "redirect:/user/panel";
     }
 
 }

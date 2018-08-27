@@ -37,6 +37,7 @@ public class LaptopService {
         return laptopRepository.findAll();}
 
     public Laptop addLaptop(NewLaptopDTO newLaptopDTO) {
+
         Laptop laptop = new Laptop();
         laptop.setName(newLaptopDTO.getName());
         laptop.setProcessor(newLaptopDTO.getProcessor());

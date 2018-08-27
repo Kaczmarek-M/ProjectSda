@@ -19,4 +19,6 @@ public class NewAuctionDTO {
     private long estimatedPrice;
 
     private long categoryId;
+
+    private String username;
 }

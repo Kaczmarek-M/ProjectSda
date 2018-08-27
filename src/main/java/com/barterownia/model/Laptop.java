@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -34,6 +35,8 @@ public class Laptop implements AuctionFields {
     private Float screenSize;
     private String motherboard;
     private String graphicsCard;
+
+    @DateTimeFormat(pattern = "yyyy-dd-MM")
     private LocalDate dateOfProduction;
     private Boolean isNew;
     private Boolean isWarranty;

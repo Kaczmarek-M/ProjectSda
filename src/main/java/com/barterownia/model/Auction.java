@@ -2,6 +2,7 @@ package com.barterownia.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -12,13 +13,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@EqualsAndHashCode(of="id")
 public class Auction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToOne
+    @ManyToOne
     private AppUser user;
 
     @OneToOne

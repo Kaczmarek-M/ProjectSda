@@ -17,7 +17,7 @@
                 <article id="showcase">
                     <div th:each="auction : ${auctionList}">
 
-                        <div th:if="${auction.isAccepted == true && auction.isSold == false}">
+                        <div th:if="${auction.isAccepted && !auction.isSold}">
                             <div class="row" th:onclick="'clicked('+'\'/auction/get/'+${auction.id}+'\')'">
                                 <div class="col-sm-2" th:text="${auction.item.estimatedPrice}"></div>
                                 <div class="col-sm-6" th:text="${auction.title}"></div>

@@ -36,23 +36,10 @@ public class AppUserDetailsService implements UserDetailsService {
             return new User(
                     appUser.getUsername(),
                     appUser.getPassword(),
-                    getRolesForUser(appUser));
+                    appUser.getAuthorities());
         }
 
         throw new UsernameNotFoundException("Username not found");
     }
 
-    private Collection<? extends GrantedAuthority> getRolesForUser(AppUser user) {
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-
-        if (user.getPrivilege() > 2) {
-            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        }
-        if (user.getPrivilege() > 1) {
-            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_RZECZOZNAWCA"));
-        }
-        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-
-        return grantedAuthorities;
-    }
 }

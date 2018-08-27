@@ -14,4 +14,6 @@ public interface AuctionRepository extends JpaRepository<Auction, Long> {
     List<Auction> findAllByUser_Id(long userId);
 
     List<Auction> findAllByTitleContaining(String title);
+
+    List<Auction> findAllByIsAcceptedIsFalse();
 }

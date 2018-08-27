@@ -3,6 +3,7 @@ package com.barterownia.model.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -18,6 +19,8 @@ public class NewLaptopDTO {
     private Float screenSize;
     private String motherboard;
     private String graphicsCard;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfProduction;
     private Boolean isNew;
     private Boolean isWarranty;

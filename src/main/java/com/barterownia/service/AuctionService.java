@@ -2,12 +2,9 @@ package com.barterownia.service;
 
 import com.barterownia.model.AppUser;
 import com.barterownia.model.Auction;
-import com.barterownia.model.Category;
 import com.barterownia.model.Item;
 import com.barterownia.model.dto.NewAuctionDTO;
 import com.barterownia.repository.AuctionRepository;
-import com.barterownia.repository.CategoryRepository;
-import com.barterownia.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,24 +28,27 @@ public class AuctionService {
     @Autowired
     private AppUserService appUserService;
 
-    public void addAuction(NewAuctionDTO newAuctionDTO, Principal principal) {
+    public Optional<Auction> addAuction(NewAuctionDTO newAuctionDTO) {
         Auction auction = new Auction();
         Item item = new Item();
 
-        AppUser user = appUserService.findByUsername(principal.getName());
-        System.out.println(user);
+        AppUser user = appUserService.findByUsername(newAuctionDTO.getUsername());
+
 
         item.setCategory(categoryService.findCategoryById(newAuctionDTO.getCategoryId()));
         item.setEstimatedPrice(newAuctionDTO.getEstimatedPrice());
         itemService.addItem(item);
 
+        auction.setIsAccepted(false);
+        auction.setIsSold(false);
         auction.setDescription(newAuctionDTO.getDescription());
         auction.setTitle(newAuctionDTO.getTitle());
         auction.setExpirationDate(LocalDateTime.now().plusDays(newAuctionDTO.getDuration()));
         auction.setItem(item);
         auction.setUser(user);
 
-        saveAuction(auction);
+        auction = auctionRepository.save(auction);
+        return Optional.of(auction);
     }
 
     public void saveAuction(Auction auction){
@@ -80,7 +80,20 @@ public class AuctionService {
         return auctionRepository.findAllByTitleContaining(title);
     }
 
+    public List<Auction> findAllNotAccepted() {
+        return auctionRepository.findAllByIsAcceptedIsFalse();
+    }
 
+    public boolean acceptAuction(long id) {
+        Optional<Auction> auctionOptional = auctionRepository.findById(id);
 
+        if (auctionOptional.isPresent()) {
+            Auction auction = auctionOptional.get();
+            auction.setIsAccepted(true);
+            auctionRepository.save(auction);
+            return true;
+        }
 
+        return false;
+    }
 }

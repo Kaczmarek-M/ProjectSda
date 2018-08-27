@@ -1,17 +1,21 @@
 package com.barterownia.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "app_user")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class AppUser {
+@EqualsAndHashCode(of="id")
+public class AppUser implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,5 +34,40 @@ public class AppUser {
         this.username = username;
         this.password = password;
         this.privilege = privilege;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+
+        if (this.getPrivilege() > 2) {
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
+        if (this.getPrivilege() > 1) {
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_RZECZOZNAWCA"));
+        }
+        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+        return grantedAuthorities;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
     }
 }

@@ -1,8 +1,10 @@
 package com.barterownia.model;
 
+import com.barterownia.model.interfaces.AuctionFields;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +26,8 @@ public class MusicAlbum implements AuctionFields {
 
     private String bandName;
     private String albumName;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate publicationDate;
     private String carrier;
 

@@ -20,6 +20,44 @@
 
                 <button th:onclick="'clicked(\'/auction/add\')'" class="btn btn-primary">Dodaj aukcje</button>
 
+
+                <h2>Moje Aukcje</h2>
+                <div th:each="auction : ${user.auctions}">
+                    <div class="row" th:onclick="'clicked('+'\'/auction/get/'+${auction.id}+'\')'">
+                        <div class="col-md-1" th:if="${auction.isAccepted}"><img src="/img/tick.png" height="30"
+                                                                                 width="30"></div>
+                        <div class="col-md-1" th:if="${!auction.isAccepted}"><img src="/img/cross.png" height="30"
+                                                                                  width="30"></div>
+                        <div class="col-md-1" th:if="${auction.isSold}"><img src="/img/coins.png" height="30"
+                                                                             width="30"></div>
+                        <div class="col-md-1" th:if="${!auction.isSold}"></div>
+                        <div class="col-md-2" th:text="${auction.item.estimatedPrice}"></div>
+                        <div class="col-md-6" th:text="${auction.title}"></div>
+                        <div class="col-md-2" th:text="${#temporals.format(auction.expirationDate,'dd-MM-yyyy')}"></div>
+                    </div>
+                </div>
+
+
+                <div sec:authorize="hasRole('RZECZOZNAWCA')">
+                    <h2>Nie zaakceptowane aukcje</h2>
+                    <div th:each="auction : ${notAcceptedAuctions}">
+                        <div class="row">
+                            <div class="col-md-1" th:if="${!auction.isAccepted}">
+                                <input type="checkbox"
+                                       th:checked="${auction.isAccepted}"
+                                       th:onclick="'clicked('+'\'/auction/accept/'+${auction.id}+'\')'">
+                            </div>
+                            <div class="col-md-1" th:if="${auction.isSold}"><img src="/img/coins.png" height="30"
+                                                                                 width="30"></div>
+                            <div class="col-md-1" th:if="${!auction.isSold}"></div>
+                            <div class="col-md-2" th:text="${auction.item.estimatedPrice}"></div>
+                            <div class="col-md-6" th:text="${auction.title}"></div>
+                            <div class="col-md-2"
+                                 th:text="${#temporals.format(auction.expirationDate,'dd-MM-yyyy')}"></div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
