@@ -13,6 +13,7 @@ import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping(path = "/auction")
@@ -110,12 +111,45 @@ public class AuctionController {
 
         Optional<Auction> auction = auctionService.addAuction(newAuction);
 
-        return "redirect:/" + categoryService.findCategoryById(newAuction.getCategoryId()).getName() + "/add?id=" + auction.get().getItem().getId();
+        return "redirect:/" + categoryService.findCategoryById(newAuction.getCategoryId()).getTableName() + "/add?id=" + auction.get().getItem().getId();
     }
 
     @GetMapping(path = "/accept/{id}")
     public String acceptAuction(@PathVariable(name = "id") long id) {
         auctionService.acceptAuction(id);
+
+        return "redirect:/user/panel";
+    }
+
+
+    @GetMapping(path = "/offers/{id}")
+    public String getAuctionOffers(Model model, @PathVariable(name = "id") long id) {
+
+        Optional<Auction> auctionOptional = auctionService.findById(id);
+
+        if (auctionOptional.isPresent()) {
+            Auction auction = auctionOptional.get();
+            Set<Auction> tradeOffers = auction.getTradeOffers();
+            System.out.println(tradeOffers);
+
+            model.addAttribute("auctionList", tradeOffers);
+            return "/auctionList";
+        }
+
+        return "redirect:/user/panel";
+    }
+
+
+    @GetMapping(path = "/makeOffer/{offerId}/{myId}")
+    public String makeOffer(Model model, @PathVariable(name = "offerId") long offerId, @PathVariable(name = "myId") long myId) {
+
+        Optional<Auction> auctionOptional = auctionService.findById(offerId);
+
+        if (auctionOptional.isPresent()) {
+            Auction auction = auctionOptional.get();
+            Set<Auction> tradeOffers = auction.getTradeOffers();
+            tradeOffers.add(auctionService.findById(myId).get());
+        }
 
         return "redirect:/user/panel";
     }

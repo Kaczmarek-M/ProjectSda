@@ -20,7 +20,12 @@ public class CategoryService {
 
     public Category findCategoryById(long id) {
         Optional<Category> optionalCategory = categoryRepository.findById(id);
-        Category category = optionalCategory.get();
-        return category;
+        return optionalCategory.get();
     }
+
+    public Category addCategory(Category category) {
+        return categoryRepository.save(category);
+    }
+
+
 }

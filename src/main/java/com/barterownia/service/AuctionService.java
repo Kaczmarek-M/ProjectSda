@@ -66,7 +66,7 @@ public class AuctionService {
     }
 
     public List<Auction> findByCategory(String category) {
-        return auctionRepository.findAllByItem_Category_Name(category);
+        return auctionRepository.findAllByItem_Category_TableName(category);
     }
 
     public void deleteAuction(long id) {

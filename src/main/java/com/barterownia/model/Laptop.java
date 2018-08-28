@@ -1,6 +1,7 @@
 package com.barterownia.model;
 
 
+import com.barterownia.model.interfaces.AuctionFields;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

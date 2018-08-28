@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "auction")
 @NoArgsConstructor
@@ -36,6 +37,9 @@ public class Auction {
     private Boolean isAccepted;
 
     private Boolean isSold;
+
+    @OneToMany
+    private Set<Auction> tradeOffers;
 
 
 }

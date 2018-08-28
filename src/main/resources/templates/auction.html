@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head th:replace="fragments :: links">
     <title>Title</title>
@@ -43,7 +44,9 @@
                         </div>
                     </div>
                 </ul>
-
+                <div sec:authorize="isAuthenticated()">
+                    <button class="button" th:onclick="'clicked('+'\'/auction/makeOffer/'+${auction.id}+'\')'">Zaproponuj wymiane</button>
+                </div>
             </div>
         </div>
     </div>

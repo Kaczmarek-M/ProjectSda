@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface AuctionRepository extends JpaRepository<Auction, Long> {
 
-    List<Auction> findAllByItem_Category_Name(String categoryName);
+    List<Auction> findAllByItem_Category_TableName(String categoryName);
 
     List<Auction> findAllByUser_Id(long userId);
 
