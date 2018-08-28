@@ -1,6 +1,7 @@
 package com.barterownia.service;
 
 import com.barterownia.model.MobilePhone;
+import com.barterownia.model.dto.NewMobilePhoneDTO;
 import com.barterownia.repository.MobilePhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,20 @@ public class MobilePhoneService {
 
     @Autowired
     private MobilePhoneRepository mobilePhoneRepository;
+
+    public MobilePhone addMobilePhone(NewMobilePhoneDTO mobilePhoneDTO) {
+        MobilePhone mobilePhone = new MobilePhone();
+        mobilePhone.setName(mobilePhoneDTO.getName());
+        mobilePhone.setSimlock(mobilePhoneDTO.getSimlock());
+        mobilePhone.setWarranty(mobilePhoneDTO.getWarranty());
+        mobilePhone.setColor(mobilePhoneDTO.getColor());
+        mobilePhone.setScreenSize(mobilePhoneDTO.getScreenSize());
+        mobilePhone.setIsNew(mobilePhoneDTO.getIsNew());
+        mobilePhone.setRamMb(mobilePhoneDTO.getRamMb());
+        mobilePhone.setProcessor(mobilePhoneDTO.getProcessor());
+        mobilePhone.setIsWarranty(mobilePhoneDTO.getIsWarranty());
+        return mobilePhoneRepository.save(mobilePhone);
+    }
 
     public Optional<MobilePhone> findById(Long id) {
         return mobilePhoneRepository.findById(id);
