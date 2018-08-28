@@ -110,7 +110,7 @@ public class AuctionController {
 
         Optional<Auction> auction = auctionService.addAuction(newAuction);
 
-        return "redirect:/" + categoryService.findCategoryById(newAuction.getCategoryId()).getName() + "/add?id=" + auction.get().getItem().getId();
+        return "redirect:/" + categoryService.findCategoryById(newAuction.getCategoryId()).getTableName() + "/add?id=" + auction.get().getItem().getId();
     }
 
     @GetMapping(path = "/accept/{id}")

@@ -1,9 +1,11 @@
 package com.barterownia.model;
 
+import com.barterownia.model.interfaces.AuctionFields;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,6 +34,7 @@ public class MobilePhone implements AuctionFields {
     private String color;
     private Boolean isNew;
     private Boolean isWarranty;
+    @DateTimeFormat(pattern = "yyyy-dd-MM")
     private LocalDate warranty;
 
     public MobilePhone(String name) {

@@ -1,5 +1,6 @@
 package com.barterownia.model;
 
+import com.barterownia.model.interfaces.AuctionFields;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

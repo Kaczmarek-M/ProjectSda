@@ -1,23 +1,26 @@
 package com.barterownia.controller;
 
 import com.barterownia.model.MobilePhone;
+import com.barterownia.model.dto.NewMobilePhoneDTO;
+import com.barterownia.service.ItemService;
 import com.barterownia.service.MobilePhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path = "/mobilePhone/")
-public class TestMobilePhoneController {
+@RequestMapping(path = "/mobile_phone/")
+public class MobilePhoneController {
 
     @Autowired
     private MobilePhoneService mobilePhoneService;
+
+    @Autowired
+    private ItemService itemService;
 
     @RequestMapping(path="/")
     public String home(){
@@ -107,5 +110,24 @@ public class TestMobilePhoneController {
         mobilePhone.setSimlock(simlock);
         mobilePhoneService.updateMobilePhone(mobilePhone);
         return "redirect:/findById/" + id;
+    }
+
+    @GetMapping(path = "/add")
+    public String getAddAuction(@RequestParam(name = "id") Long itemId, Model model) {
+
+        model.addAttribute("mobile_phone", new NewMobilePhoneDTO());
+        model.addAttribute("item_id", itemId);
+
+        return "addMobilePhone";
+    }
+
+
+    @PostMapping(path = "/add")
+    public String addAuction(NewMobilePhoneDTO mobilePhoneDTO, @RequestParam(name = "itemId") Long itemId) {
+
+        MobilePhone mobilePhone = mobilePhoneService.addMobilePhone(mobilePhoneDTO);
+        itemService.updateItemId(itemId, mobilePhone.getId());
+
+        return "redirect:/user/panel";
     }
 }
