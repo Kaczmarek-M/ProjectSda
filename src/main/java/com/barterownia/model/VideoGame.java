@@ -36,11 +36,11 @@ public class VideoGame implements AuctionFields {
     public Map<String, Object> getFieldMap() {
         Map<String, Object> fieldMap = new HashMap<>();
 
-        fieldMap.put("Title", title);
-        fieldMap.put("Genre", genre);
-        fieldMap.put("Platform", platform);
-        fieldMap.put("Publisher", publisher);
-        fieldMap.put("Is new", isNew);
+        fieldMap.put("Gra", title);
+        fieldMap.put("Rodzaj", genre);
+        fieldMap.put("Platforma", platform);
+        fieldMap.put("Wydawca", publisher);
+        fieldMap.put("Czy jest nowa?", isNew);
         fieldMap.put("Pegi", pegi);
 
         return fieldMap;
