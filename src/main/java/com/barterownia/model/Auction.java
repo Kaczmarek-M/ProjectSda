@@ -29,6 +29,8 @@ public class Auction {
 
     private LocalDateTime expirationDate;
 
+    private LocalDateTime startDate;
+
     private String title;
 
     @Column(length = 600)

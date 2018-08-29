@@ -37,6 +37,9 @@ public class AuctionController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private AppUserService appUserService;
+
     @GetMapping(path = "/list/category/{category}")
     public String getAuctionListByCategory(Model model, @PathVariable(name = "category") String category) {
         List<Auction> byCategory = auctionService.findByCategory(category);
@@ -130,7 +133,6 @@ public class AuctionController {
         if (auctionOptional.isPresent()) {
             Auction auction = auctionOptional.get();
             Set<Auction> tradeOffers = auction.getTradeOffers();
-            System.out.println(tradeOffers);
 
             model.addAttribute("auctionList", tradeOffers);
             return "/auctionList";
@@ -149,8 +151,21 @@ public class AuctionController {
             Auction auction = auctionOptional.get();
             Set<Auction> tradeOffers = auction.getTradeOffers();
             tradeOffers.add(auctionService.findById(myId).get());
+            auctionService.saveAuction(auction);
         }
 
         return "redirect:/user/panel";
+    }
+
+    @GetMapping(path = "/makeOffer/{offerId}")
+    public String getOfferList(Model model, @PathVariable(name = "offerId") long offerId, Principal principal) {
+        Optional<AppUser> user = appUserService.findOptionalByUsername(principal.getName());
+
+        model.addAttribute("offerId",offerId);
+        user.ifPresent(appUser -> {
+            model.addAttribute("auctions", appUser.getAuctions());
+        });
+
+        return "/offerList";
     }
 }

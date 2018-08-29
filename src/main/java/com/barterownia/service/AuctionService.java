@@ -43,6 +43,7 @@ public class AuctionService {
         auction.setDescription(newAuctionDTO.getDescription());
         auction.setTitle(newAuctionDTO.getTitle());
         auction.setExpirationDate(LocalDateTime.now().plusDays(newAuctionDTO.getDuration()));
+        auction.setStartDate(LocalDateTime.now());
         auction.setItem(item);
         auction.setUser(user);
 
