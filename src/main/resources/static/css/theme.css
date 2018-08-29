@@ -125,6 +125,56 @@ body {
 
 .Parametry {
     color: darkblue;
+    font-size: 25px;
+}
+
+.odstep2 {
+    font-size: 18px;
+}
+
+.odstep-1 {
+    font-size: 25px;
+    font-weight: bolder;
+    min-width: 500px;
+    margin-left: 255px;
+
+
+}
+
+.text-align-normal {
+    text-align: left;
+}
+.odstep-gora{
+    margin-top:50px;
+}
+
+.moj2 {
+    max-width: 850px;
+    max-height: 200px;
+    margin-left: 135px;
+    text-align: center;
+
+}
+.tytul {
+    min-width: 1000px;
+    min-height: 50px;
+    font-weight: bolder;
+    font-size: 35px;
+}
+.moj3 {
+    width: 700px;
+    margin-left: 135px;
+
+}
+.button {
+    max-width: 500px;
+    font-size: 12px;
+    margin-left: 170px;
+
+}
+
+.Parametry {
+    color: darkblue;
     font-size: 30px;
 }
 
