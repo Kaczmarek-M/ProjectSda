@@ -2,6 +2,7 @@ package com.barterownia.service;
 
 import com.barterownia.model.MusicAlbum;
 import com.barterownia.model.VideoGame;
+import com.barterownia.model.dto.NewMusicAlbumDTO;
 import com.barterownia.repository.MusicAlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,4 +75,13 @@ public class MusicAlbumService {
         return musicAlbumRepository.findAllByPublicationDateIsBetween(min, max);
     }
 
+    public MusicAlbum addAlbum(NewMusicAlbumDTO musicAlbumDTO) {
+    MusicAlbum musicAlbum = new MusicAlbum();
+    musicAlbum.setAlbumName(musicAlbumDTO.getAlbumName());
+    musicAlbum.setBandName(musicAlbumDTO.getBandName());
+    musicAlbum.setCarrier(musicAlbumDTO.getCarrier());
+    musicAlbum.setPublicationDate(musicAlbumDTO.getPublicationDate());
+
+    return musicAlbumRepository.save(musicAlbum);
+    }
 }
