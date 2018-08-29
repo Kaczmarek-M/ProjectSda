@@ -7,14 +7,15 @@
 </head>
 
 <body>
+
 <div th:replace="header :: header"></div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
+<section id="main">
+    <div class="row content-margin">
+        <div class="col-md-3 col-lg-2">
             <div th:replace="sidebar::sidebar"></div>
         </div>
-        <div class="col-md-9 text-center">
+        <div class="col-md-9 col-lg-10 text-center">
 
             <div sec:authorize="hasRole('USER')">
                 <h2>Moje Aukcje</h2>
@@ -45,7 +46,6 @@
 
                             <div class="col-md-6" th:text="${auction.title}"
                                  th:onclick="'clicked('+'\'/auction/get/'+${auction.id}+'\')'">
-
                             </div>
 
                             <div class="col-md-2"
@@ -54,13 +54,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-</div>
-
-
+</section>
 <div th:replace="fragments::scripts"></div>
 </body>
 

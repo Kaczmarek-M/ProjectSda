@@ -7,14 +7,15 @@
 </head>
 
 <body>
+
 <div th:replace="header :: header"></div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
+<section id="main">
+    <div class="row content-margin">
+        <div class="col-md-3 col-lg-2">
             <div th:replace="sidebar::sidebar"></div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 col-lg-10">
             <form th:action="@{'/mobile_phone/add?itemId=' + ${item_id}}" th:object="${mobile_phone}" method="post">
                 <div class="row">
                     <div class="col-md-3">
@@ -78,14 +79,14 @@
                     </div>
                     <div class="col-md-9">
                         <select class="form-control" id="color" th:field="*{color}">
-                        <option th:value="czarny">czarny</option>
-                        <option th:value="biały">biały</option>
-                        <option th:value="niebieski">niebieski</option>
-                        <option th:value="żółty">żółty</option>
-                        <option th:value="złoty">złoty</option>
-                        <option th:value="srebrny">srebrny</option>
-                        <option th:value="różowy">różowy</option>
-                        <option th:value="inny">inny</option>
+                            <option th:value="czarny">czarny</option>
+                            <option th:value="biały">biały</option>
+                            <option th:value="niebieski">niebieski</option>
+                            <option th:value="żółty">żółty</option>
+                            <option th:value="złoty">złoty</option>
+                            <option th:value="srebrny">srebrny</option>
+                            <option th:value="różowy">różowy</option>
+                            <option th:value="inny">inny</option>
                         </select>
                     </div>
                 </div>
@@ -127,8 +128,8 @@
             </form>
         </div>
     </div>
-</div>
 
+</section>
 <div th:replace="fragments::scripts"></div>
 </body>
 

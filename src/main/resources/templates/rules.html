@@ -6,14 +6,15 @@
 </head>
 
 <body>
+
 <div th:replace="header :: header"></div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
+<section id="main">
+    <div class="row content-margin">
+        <div class="col-md-3 col-lg-2">
             <div th:replace="sidebar::sidebar"></div>
         </div>
-        <div class="col-md-9 text-center">
+        <div class="col-md-9 col-lg-10 text-center">
             <h1><b>Regulamin sklepu internetowego</b></h1>
 
             <p>1. Ze sklepu internetowego mogą korzystać tylko osoby, które ukończyły 18 lat.</p>
@@ -31,8 +32,8 @@
 
         </div>
     </div>
-</div>
-
+    </div>
+</section>
 <div th:replace="fragments::scripts"></div>
 </body>
 

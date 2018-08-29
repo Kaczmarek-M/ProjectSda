@@ -9,12 +9,12 @@
 <body>
 <div th:replace="header :: header"></div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
+<section id="main">
+    <div class="row content-margin">
+        <div class="col-md-3 col-lg-2">
             <div th:replace="sidebar::sidebar"></div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 col-lg-10">
             <form th:action="@{'/music_album/add?itemId=' + ${item_id}}" th:object="${music_album}" method="post">
                 <div class="row">
                     <div class="col-md-3">
@@ -48,10 +48,10 @@
                     </div>
                     <div class="col-md-9">
                         <select class="form-control" id="carrier" th:field="*{carrier}">
-                        <option th:value="CD">CD</option>
-                        <option th:value="DVD">DVD</option>
-                        <option th:value="vinyl">Vinyl</option>
-                        <option th:value="kaseta_magnetofonowa">Kaseta magnetofonowa</option>
+                            <option th:value="CD">CD</option>
+                            <option th:value="DVD">DVD</option>
+                            <option th:value="vinyl">Vinyl</option>
+                            <option th:value="kaseta_magnetofonowa">Kaseta magnetofonowa</option>
                         </select>
                     </div>
                 </div>
@@ -64,8 +64,7 @@
             </form>
         </div>
     </div>
-</div>
-
+</section>
 <div th:replace="fragments::scripts"></div>
 </body>
 
