@@ -1,6 +1,7 @@
 package com.barterownia.service;
 
 import com.barterownia.model.VideoGame;
+import com.barterownia.model.dto.NewVideoGameDTO;
 import com.barterownia.repository.VideoGameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -93,4 +94,15 @@ public class VideoGameService {
         }
     }
 
+    public VideoGame addVideoGame(NewVideoGameDTO newVideoGameDTO) {
+        VideoGame videoGame = new VideoGame();
+        videoGame.setTitle(newVideoGameDTO.getTitle());
+        videoGame.setPlatform(newVideoGameDTO.getPlatform());
+        videoGame.setPublisher(newVideoGameDTO.getPublisher());
+        videoGame.setGenre(newVideoGameDTO.getGenre());
+        videoGame.setPegi(newVideoGameDTO.getPegi());
+        videoGame.setIsNew(newVideoGameDTO.getIsNew());
+
+        return videoGameRepository.save(videoGame);
+    }
 }

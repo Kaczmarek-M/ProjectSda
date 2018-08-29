@@ -8,26 +8,29 @@
 <div th:replace="header :: header"></div>
 
 <section id="main">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div th:replace="sidebar::sidebar"></div>
-            </div>
-            <div class="col-md-9">
-                <article id="showcase">
-                    <div th:each="auction : ${auctionList}">
+    <div class="row content-margin">
+        <div class="col-md-3 col-lg-2">
+            <div th:replace="sidebar::sidebar"></div>
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <article id="showcase">
+                <div th:each="auction : ${auctionList}">
 
-                        <div th:if="${auction.isAccepted && !auction.isSold}">
-                            <div class="row" th:onclick="'clicked('+'\'/auction/get/'+${auction.id}+'\')'">
-                                <div class="col-sm-2" th:text="${auction.item.estimatedPrice}"></div>
-                                <div class="col-sm-6" th:text="${auction.title}"></div>
-                                <div class="col-sm-4" th:text="${auction.user.username}"></div>
+                    <div th:if="${auction.isAccepted && !auction.isSold}">
+                        <div th:onclick="'clicked('+'\'/auction/get/'+${auction.id}+'\')'">
+                            <div class="card mb-1 border-0 shadow">
+                                <div class="row card-body">
+                                    <div class="col-md-8" th:text="${auction.title}"></div>
+                                    <div class="col-md-2" th:text="${auction.item.estimatedPrice}"></div>
+                                    <div class="col-md-2" th:text="${auction.user.username}"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </article>
-            </div>
+                </div>
+            </article>
         </div>
+
     </div>
 </section>
 

@@ -6,14 +6,24 @@ body {
     margin-top: 50px;
 }
 
+.content-margin {
+    margin-top: 55px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 .feather {
     width: 16px;
     height: 16px;
     vertical-align: text-bottom;
 }
 
-.form-stretched{
+.form-stretched {
     width: 100%;
+}
+
+.card:hover {
+    background-color: #f6f6f6;
 }
 
 /*
@@ -111,4 +121,29 @@ body {
     margin-top: 20px;
     position: absolute;
     bottom: 10px;
+}
+
+.Parametry {
+    color: darkblue;
+    font-size: 30px;
+}
+
+.odstep2 {
+    font-size: 20px;
+}
+
+.odstep-1 {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.table-active {
+    position: absolute;
+}
+
+.text-align-normal {
+    text-align: left;
+}
+.odstep-gora{
+    margin-top:100px;
 }

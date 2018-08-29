@@ -17,9 +17,9 @@ public interface LaptopRepository extends JpaRepository<Laptop, Long> {
 
     List<Laptop> findAllByGraphicsCard(String graphicsCard);
 
-    List<Laptop> findAllByHardDriveMbIsBetween(Long min, Long max);
+    List<Laptop> findAllByHardDriveGbIsBetween(Long min, Long max);
 
-    List<Laptop> findAllByRamMbIsBetween(Long min, Long max);
+    List<Laptop> findAllByRamGbIsBetween(Long min, Long max);
 
     List<Laptop> findAllByScreenSizeIsBetween(Float min, Float max);
 
