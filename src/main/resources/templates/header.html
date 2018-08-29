@@ -30,6 +30,7 @@
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" th:href="@{/user/panel}">MOJE OGŁOSZENIA</a>
                 <a class="dropdown-item" th:onclick="'clicked(\'/auction/add\')'">DODAJ</a>
+                <a class="dropdown-item" th:onclick="'clicked(\'/user/details\')'">DANE</a>
                 <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:onclick="'clicked(\'/user/findUser\')'">UŻYTKOWNICY</a>
 
                 <div class="dropdown-divider"></div>

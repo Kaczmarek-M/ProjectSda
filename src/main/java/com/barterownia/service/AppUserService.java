@@ -2,8 +2,10 @@ package com.barterownia.service;
 
 import com.barterownia.model.AppUser;
 import com.barterownia.model.Auction;
+import com.barterownia.model.ContactDetails;
 import com.barterownia.model.dto.NewUserDTO;
 import com.barterownia.repository.AppUserRepository;
+import com.barterownia.repository.ContactDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,9 @@ public class AppUserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private ContactDetailsRepository contactDetailsRepository;
+
     public boolean addUser(NewUserDTO appUser) {
 
         Optional<AppUser> userByUsername = userRepository.findAppUserByUsername(appUser.getUsername());
@@ -29,7 +34,8 @@ public class AppUserService {
         }
 
         AppUser newUser = new AppUser(appUser.getUsername(), bCryptPasswordEncoder.encode(appUser.getPassword()), 0);
-
+        newUser.setContactDetails(new ContactDetails(appUser.getEmail()));
+        contactDetailsRepository.save(newUser.getContactDetails());
         userRepository.save(newUser);
 
         return true;
@@ -115,5 +121,41 @@ public class AppUserService {
             return true;
         }
         return false;
+    }
+
+    public AppUser changeDetails(AppUser user, ContactDetails contactDetails) {
+        ContactDetails userDetails = user.getContactDetails();
+
+        if (userDetails == null) {
+            userDetails = new ContactDetails();
+        }
+
+        if (contactDetails.getCity() != null) {
+            userDetails.setCity(contactDetails.getCity());
+        }
+
+
+        if (contactDetails.getEmail() != null) {
+            userDetails.setEmail(contactDetails.getEmail());
+        }
+
+        if (contactDetails.getHome() != null) {
+            userDetails.setHome(contactDetails.getHome());
+        }
+
+        if (contactDetails.getPhoneNumber() != null) {
+            userDetails.setPhoneNumber(contactDetails.getPhoneNumber());
+        }
+
+        if (contactDetails.getStreet() != null) {
+            userDetails.setStreet(contactDetails.getStreet());
+        }
+
+        if (contactDetails.getZipCode() != null) {
+            userDetails.setZipCode(contactDetails.getZipCode());
+        }
+        contactDetailsRepository.save(userDetails);
+        user.setContactDetails(userDetails);
+        return userRepository.save(user);
     }
 }

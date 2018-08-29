@@ -1,6 +1,7 @@
 package com.barterownia.controller;
 
 import com.barterownia.model.AppUser;
+import com.barterownia.model.ContactDetails;
 import com.barterownia.model.dto.AuthoritiesUserDTO;
 import com.barterownia.model.dto.NewUserDTO;
 import com.barterownia.service.AppUserService;
@@ -119,5 +120,27 @@ public class AppUserController {
         }
 
         return "redirect:/user/findUser";
+    }
+
+
+    @GetMapping(path = "/details")
+    public String getDetails(Principal principal, Model model) {
+
+        AppUser user = appUserService.findByUsername(principal.getName());
+        if (user.getContactDetails() != null) {
+            model.addAttribute("details", user.getContactDetails());
+        }else {
+            model.addAttribute("details", new ContactDetails());
+        }
+        return "/userDetails";
+    }
+
+    @PostMapping(path = "changeDetails")
+    public String changeDetails(Principal principal, ContactDetails contactDetails){
+        AppUser user = appUserService.findByUsername(principal.getName());
+
+        appUserService.changeDetails(user,contactDetails);
+
+        return "redirect:/user/details";
     }
 }

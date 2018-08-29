@@ -27,6 +27,9 @@ public class AppUser implements UserDetails {
 
     private int privilege;
 
+    @OneToOne
+    private ContactDetails contactDetails;
+
     @OneToMany(fetch = FetchType.EAGER)
     private Set<Auction> auctions;
 
