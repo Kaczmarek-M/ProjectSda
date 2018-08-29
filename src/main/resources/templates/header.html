@@ -12,18 +12,30 @@
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" th:href="@{/home}">Barterownia</a>
         <form class="form-stretched" th:action="@{/auction/list/title}" method="get">
-        <input class="form-control form-control-dark" type="text" name="title" id="title" placeholder="Wpisz nazwę szukanego przedmiotu"
-               aria-label="Search">
+            <input class="form-control form-control-dark" type="text" name="title" id="title"
+                   placeholder="Wpisz nazwę szukanego przedmiotu"
+                   aria-label="Search">
         </form>
-            <button sec:authorize="isAnonymous()" type="button" class="btn btn-primary col-sm-3 col-md-1  ml-2 mr-2" data-toggle="modal"
-                    data-target="#myModal">
-                ZALOGUJ
-            </button>
+        <button sec:authorize="isAnonymous()" type="button" class="btn btn-primary col-sm-3 col-md-1  ml-2 mr-2"
+                data-toggle="modal"
+                data-target="#myModal">
+            ZALOGUJ
+        </button>
 
-
-            <button sec:authorize ="!isAnonymous()" type="button" class="btn btn-primary col-sm-3 col-md-1  ml-2 mr-2" th:onclick="'clicked('+'\'/logout\')'">
-                WYLOGUJ
+        <div class="btn-group" sec:authorize="!isAnonymous()">
+            <button type="button" class="btn btn-primary dropdown-toggle ml-2 mr-2" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                Moje konto
             </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" th:href="@{/user/panel}">MOJE OGŁOSZENIA</a>
+                <a class="dropdown-item" th:onclick="'clicked(\'/auction/add\')'">DODAJ</a>
+                <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:onclick="'clicked(\'/user/findUser\')'">UŻYTKOWNICY</a>
+
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" th:onclick="'clicked('+'\'/logout\')'">WYLOGUJ</a>
+            </div>
+        </div>
 
     </nav>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
