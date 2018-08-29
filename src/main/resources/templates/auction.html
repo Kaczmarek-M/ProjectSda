@@ -10,20 +10,24 @@
 <div th:replace="header :: header"></div>
 
 <section id="main">
+    <div class="col-md-3">
+        <div th:replace="sidebar::sidebar"></div>
+    </div>
     <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div th:replace="sidebar::sidebar"></div>
-            </div>
+        <div class="row text-right">
             <div class="col-md-9">
 
                 <!--TYTUŁ AUKCJI-->
                 <h1><b th:text="${auction.title}"></b></h1>
 
+                <!--OPIS AUKCJI (maksymalnie 600 znaków)-->
+                <!--<p class="lead" th:text="${auction.description}"></p>-->
 
                 <!--CENA PRZEDMIOTU-->
-                <div th:text="'Cena: ' + ${auction.item.estimatedPrice}"></div>
-
+                <div class="col-md-10 odstep-1">
+                    <div th:text="'Cena: ' + ${auction.item.estimatedPrice}"></div>
+                </div>
+                <br>
 
                 <!--WSZYSTKIE POLA Z DANEJ KLASY-->
                 <!--W AuctionController, zależnie od kategorii wyciagany jest obiekt fieldMap-->
@@ -31,20 +35,29 @@
                 <!--Kluczem w mapie jest nazwa pola-->
                 <!--Wartoscia w mapie jest wartosc pola-->
                 <ul>
-                    <!--Pętla która iteruje po mapie zawierajacej pola-->
-                    <div th:each="key: ${fieldMap.keySet()}">
-                        <!--Sprawdza czy wartosc danego pola nie jest 'null'-->
-                        <div th:if="${fieldMap.get(key) != null}">
+                    <div style="text-align: left">
+                        <div class="color-palette Parametry" th:text="'Parametry:'"></div>
+                        <br>
+                        <!--Pętla która iteruje po mapie zawierajacej pola-->
+                        <div th:each="key: ${fieldMap.keySet()}">
+                            <!--Sprawdza czy wartosc danego pola nie jest 'null'-->
+                            <div class="row" th:if="${fieldMap.get(key) != null}">
+                                <!--Wypisanie wartosci z mapy:-->
+                                <!--key - nazwa pola np.'Graphics' potem wstawione '=' potem wartosc z mapy np.'AMD'-->
 
-                            <!--Wypisanie wartosci z mapy:-->
-                            <!--key - nazwa pola np.'Graphics' potem wstawione '=' potem wartosc z mapy np.'AMD'-->
-                            <div class="row">
-                                <span class="col-md-3" th:text="${key}"></span> = <span class="col-md-3"
-                                                                                        th:text="${fieldMap.get(key).toString()}"></span>
+                                <div class="col-md-4 odstep2" style="color: #333333">
+                                    <span th:text="${key}"></span> :
+                                </div>
+                                <div class="col-md-4 odstep2" style="color: black">
+                                    <span th:text="${fieldMap.get(key).toString()}"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </ul>
+                <div class="row odstep-gora">
+                    <div class="offset-md-1 col-md-12 text-align-normal" th:text="${auction.description}"></div>
+                </div>
                 <div sec:authorize="isAuthenticated()">
                     <button class="button" th:onclick="'clicked('+'\'/auction/makeOffer/'+${auction.id}+'\')'">Zaproponuj wymiane</button>
                 </div>

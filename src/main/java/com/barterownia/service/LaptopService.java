@@ -1,9 +1,6 @@
 package com.barterownia.service;
 
 
-import com.barterownia.model.Auction;
-import com.barterownia.model.Category;
-import com.barterownia.model.Item;
 import com.barterownia.model.Laptop;
 import com.barterownia.model.dto.NewLaptopDTO;
 import com.barterownia.repository.AuctionRepository;
@@ -41,8 +38,8 @@ public class LaptopService {
         Laptop laptop = new Laptop();
         laptop.setName(newLaptopDTO.getName());
         laptop.setProcessor(newLaptopDTO.getProcessor());
-        laptop.setHardDriveMb(newLaptopDTO.getHardDriveMb());
-        laptop.setRamMb(newLaptopDTO.getRamMb());
+        laptop.setHardDriveGb(newLaptopDTO.getHardDriveMb());
+        laptop.setRamGb(newLaptopDTO.getRamMb());
         laptop.setScreenSize(newLaptopDTO.getScreenSize());
         laptop.setMotherboard(newLaptopDTO.getMotherboard());
         laptop.setGraphicsCard(newLaptopDTO.getGraphicsCard());
@@ -74,10 +71,10 @@ public class LaptopService {
         return laptopRepository.findAllByIsWarrantyIsTrue();
     }
     public List<Laptop> findByRamGreaterThanAndLessThan(Long ramMin, Long ramMax){
-        return laptopRepository.findAllByRamMbIsBetween(ramMin, ramMax);
+        return laptopRepository.findAllByRamGbIsBetween(ramMin, ramMax);
     }
     public List<Laptop> findByHardDriveGreaterThanAndLessThan(Long min, Long max){
-        return laptopRepository.findAllByHardDriveMbIsBetween(min, max);
+        return laptopRepository.findAllByHardDriveGbIsBetween(min, max);
     }
     public List<Laptop> findByGraphicsCard(String name){
         return laptopRepository.findAllByGraphicsCard(name);
@@ -113,11 +110,11 @@ public class LaptopService {
             if (laptop.getGraphicsCard() != null){
                 updateLaptop.setGraphicsCard(laptop.getGraphicsCard());
             }
-            if (laptop.getHardDriveMb() != null){
-                updateLaptop.setRamMb(laptop.getRamMb());
+            if (laptop.getHardDriveGb() != null){
+                updateLaptop.setRamGb(laptop.getRamGb());
             }
-            if (laptop.getHardDriveMb() != null){
-                updateLaptop.setHardDriveMb(laptop.getHardDriveMb());
+            if (laptop.getHardDriveGb() != null){
+                updateLaptop.setHardDriveGb(laptop.getHardDriveGb());
             }
             if (laptop.getIsNew() !=null){
                 updateLaptop.setIsNew(laptop.getIsNew());

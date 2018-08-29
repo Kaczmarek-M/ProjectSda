@@ -56,8 +56,11 @@
                             <div class="col-md-1" th:if="${!auction.isSold}"></div>
                             <div class="col-md-2" th:text="${auction.item.estimatedPrice}"></div>
                             <div class="col-md-6" th:text="${auction.title}"></div>
-                            <div class="col-md-2"
+                            <div class="col-md-1"
                                  th:text="${#temporals.format(auction.expirationDate,'dd-MM-yyyy')}"></div>
+
+                            <div class="col-md-1"
+                                 th:text="${#temporals.format(auction.startDate,'dd-MM-yyyy')}"></div>
                         </div>
                     </div>
                 </div>
