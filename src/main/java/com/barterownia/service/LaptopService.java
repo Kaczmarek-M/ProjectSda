@@ -38,8 +38,8 @@ public class LaptopService {
         Laptop laptop = new Laptop();
         laptop.setName(newLaptopDTO.getName());
         laptop.setProcessor(newLaptopDTO.getProcessor());
-        laptop.setHardDriveGb(newLaptopDTO.getHardDriveMb());
-        laptop.setRamGb(newLaptopDTO.getRamMb());
+        laptop.setHardDriveGb(newLaptopDTO.getHardDriveGb());
+        laptop.setRamGb(newLaptopDTO.getRamGb());
         laptop.setScreenSize(newLaptopDTO.getScreenSize());
         laptop.setMotherboard(newLaptopDTO.getMotherboard());
         laptop.setGraphicsCard(newLaptopDTO.getGraphicsCard());

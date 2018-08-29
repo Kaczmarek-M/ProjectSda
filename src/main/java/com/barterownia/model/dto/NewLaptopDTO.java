@@ -14,8 +14,8 @@ public class NewLaptopDTO {
     private String name;
 
     private String processor;
-    private Long ramMb;
-    private Long hardDriveMb;
+    private Long ramGb;
+    private Long hardDriveGb;
     private Float screenSize;
     private String motherboard;
     private String graphicsCard;

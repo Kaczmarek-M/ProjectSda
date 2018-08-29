@@ -15,7 +15,7 @@ public class NewMobilePhoneDTO {
     private String name;
 
     private String processor;
-    private Long ramMb;
+    private Long ramGb;
     private Float screenSize;
     private String simlock;
     private String color;
