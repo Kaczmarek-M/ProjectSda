@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -74,6 +75,45 @@ public class AppUserService {
         user.getAuctions().add(auction);
         userRepository.save(user);
     }
-}
 
-//ewa.herliczek@eurocash.pl
+    public List<AppUser> findAllByUsernameContaining(String username) {
+        return userRepository.findAllByUsernameContaining(username);
+    }
+
+    public boolean makeExpert(long id) {
+        Optional<AppUser> optionalOfUser = userRepository.findById(id);
+
+        if (optionalOfUser.isPresent()) {
+            AppUser appUser = optionalOfUser.get();
+            appUser.setPrivilege(2);
+            userRepository.save(appUser);
+            return true;
+        }
+        return false;
+    }
+
+
+    public boolean makeAdmin(long id) {
+        Optional<AppUser> optionalOfUser = userRepository.findById(id);
+
+        if (optionalOfUser.isPresent()) {
+            AppUser appUser = optionalOfUser.get();
+            appUser.setPrivilege(3);
+            userRepository.save(appUser);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean makeUser(long id) {
+        Optional<AppUser> optionalOfUser = userRepository.findById(id);
+
+        if (optionalOfUser.isPresent()) {
+            AppUser appUser = optionalOfUser.get();
+            appUser.setPrivilege(1);
+            userRepository.save(appUser);
+            return true;
+        }
+        return false;
+    }
+}

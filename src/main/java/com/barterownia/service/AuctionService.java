@@ -8,7 +8,6 @@ import com.barterownia.repository.AuctionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +38,7 @@ public class AuctionService {
         itemService.addItem(item);
 
         auction.setIsAccepted(false);
-        auction.setIsSold(false);
+        auction.setIsAvailable(true);
         auction.setDescription(newAuctionDTO.getDescription());
         auction.setTitle(newAuctionDTO.getTitle());
         auction.setExpirationDate(LocalDateTime.now().plusDays(newAuctionDTO.getDuration()));
@@ -93,6 +92,19 @@ public class AuctionService {
         if (auctionOptional.isPresent()) {
             Auction auction = auctionOptional.get();
             auction.setIsAccepted(true);
+            auctionRepository.save(auction);
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean lockAuction(long id) {
+        Optional<Auction> auctionOptional = auctionRepository.findById(id);
+
+        if (auctionOptional.isPresent()) {
+            Auction auction = auctionOptional.get();
+            auction.setIsAccepted(false);
             auctionRepository.save(auction);
             return true;
         }

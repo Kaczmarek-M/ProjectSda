@@ -1,17 +1,17 @@
 package com.barterownia.controller;
 
 import com.barterownia.model.AppUser;
+import com.barterownia.model.dto.AuthoritiesUserDTO;
 import com.barterownia.model.dto.NewUserDTO;
 import com.barterownia.service.AppUserService;
 import com.barterownia.service.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -61,7 +61,7 @@ public class AppUserController {
 
         user.ifPresent(appUser -> {
             model.addAttribute("user", appUser);
-            if(appUser.getPrivilege() > 1){
+            if (appUser.getPrivilege() > 1) {
                 model.addAttribute("notAcceptedAuctions", auctionService.findAllNotAccepted());
             }
         });
@@ -69,4 +69,55 @@ public class AppUserController {
         return "/userPanel";
     }
 
+    @GetMapping(path = "/findUser")
+    public String getFindUser(Model model) {
+        model.addAttribute("user", new AuthoritiesUserDTO());
+        return "/findUser";
+    }
+
+    @PostMapping(path = "/findUser")
+    public String findUser(Model model, AuthoritiesUserDTO userDTO) {
+
+        model.addAttribute("user", new AuthoritiesUserDTO());
+
+        List<AppUser> users = appUserService.findAllByUsernameContaining(userDTO.getUsername());
+        users.forEach(appUser -> System.out.println(appUser.getUsername()));
+        model.addAttribute("userList", users);
+        return "/findUser";
+    }
+
+    @GetMapping(path = "/makeExpert/{id}")
+    public String makeExpert(@PathVariable(name = "id") long id, Principal principal) {
+        AppUser admin = appUserService.findByUsername(principal.getName());
+
+        if (admin.getPrivilege() > 2) {
+            appUserService.makeExpert(id);
+        }
+
+        return "redirect:/user/findUser";
+    }
+
+
+    @GetMapping(path = "/makeAdmin/{id}")
+    public String makeAdmin(@PathVariable(name = "id") long id, Principal principal) {
+        AppUser admin = appUserService.findByUsername(principal.getName());
+
+        if (admin.getPrivilege() > 2) {
+            appUserService.makeAdmin(id);
+        }
+
+        return "redirect:/user/findUser";
+    }
+
+
+    @GetMapping(path = "/makeUser/{id}")
+    public String makeUser(@PathVariable(name = "id") long id, Principal principal) {
+        AppUser admin = appUserService.findByUsername(principal.getName());
+
+        if (admin.getPrivilege() > 2) {
+            appUserService.makeUser(id);
+        }
+
+        return "redirect:/user/findUser";
+    }
 }

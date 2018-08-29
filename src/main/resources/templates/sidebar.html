@@ -48,6 +48,15 @@
                         </h6>
                     </div>
 
+
+                    <div sec:authorize="hasRole('ADMIN')">
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-end px-3 mt-4 mb-1 text-muted">
+                            <a class="nav-link" th:href="@{/user/findUser}">
+                                Zmień Uprawnienia
+                            </a>
+                        </h6>
+                    </div>
+
                     <ul class="nav nav-down flex-column">
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/rules}">

@@ -118,12 +118,24 @@ public class AuctionController {
     }
 
     @GetMapping(path = "/accept/{id}")
-    public String acceptAuction(@PathVariable(name = "id") long id) {
-        auctionService.acceptAuction(id);
-
-        return "redirect:/user/panel";
+    public String acceptAuction(@PathVariable(name = "id") long id, Principal principal) {
+        AppUser user = appUserService.findByUsername(principal.getName());
+        if (user.getPrivilege() > 1) {
+            auctionService.acceptAuction(id);
+            return "redirect:/user/panel";
+        }
+        return "redirect:/home";
     }
 
+    @GetMapping(path = "/lock/{id}")
+    public String lockAuction(@PathVariable(name = "id") long id, Principal principal) {
+        AppUser user = appUserService.findByUsername(principal.getName());
+        if (user.getPrivilege() > 1) {
+            auctionService.lockAuction(id);
+            return "redirect:/user/panel";
+        }
+        return "redirect:/home";
+    }
 
     @GetMapping(path = "/offers/{id}")
     public String getAuctionOffers(Model model, @PathVariable(name = "id") long id) {
@@ -161,7 +173,7 @@ public class AuctionController {
     public String getOfferList(Model model, @PathVariable(name = "offerId") long offerId, Principal principal) {
         Optional<AppUser> user = appUserService.findOptionalByUsername(principal.getName());
 
-        model.addAttribute("offerId",offerId);
+        model.addAttribute("offerId", offerId);
         user.ifPresent(appUser -> {
             model.addAttribute("auctions", appUser.getAuctions());
         });

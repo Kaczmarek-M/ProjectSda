@@ -38,7 +38,7 @@ public class Auction {
 
     private Boolean isAccepted;
 
-    private Boolean isSold;
+    private Boolean isAvailable;
 
     @OneToMany
     private Set<Auction> tradeOffers;
