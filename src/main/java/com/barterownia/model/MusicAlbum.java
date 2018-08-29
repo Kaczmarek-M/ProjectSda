@@ -36,10 +36,10 @@ public class MusicAlbum implements AuctionFields {
 
         Map<String, Object> fieldMap = new HashMap<>();
 
-        fieldMap.put("Band name", bandName);
-        fieldMap.put("Album name", albumName);
-        fieldMap.put("Publication date", publicationDate);
-        fieldMap.put("Carrier", carrier);
+        fieldMap.put("Wykonawca", bandName);
+        fieldMap.put("Tytuł", albumName);
+        fieldMap.put("Data wydania", publicationDate);
+        fieldMap.put("Nośnik", carrier);
 
         return fieldMap;
     }

@@ -46,14 +46,14 @@ public class MobilePhone implements AuctionFields {
     public Map<String, Object> getFieldMap() {
         Map<String, Object> fieldMap = new HashMap<>();
 
-        fieldMap.put("Processor", processor);
+        fieldMap.put("Procesor", processor);
         fieldMap.put("RAM", ramMb);
-        fieldMap.put("Screen Size", screenSize);
-        fieldMap.put("Simlock", simlock);
-        fieldMap.put("Color", color);
-        fieldMap.put("Warranty date", warranty);
-        fieldMap.put("Is new", isNew);
-        fieldMap.put("Has Warranty", isWarranty);
+        fieldMap.put("Rozmiar wyświetlacza", screenSize);
+        fieldMap.put("Operator", simlock);
+        fieldMap.put("Kolor", color);
+        fieldMap.put("Data gwarancji", warranty);
+        fieldMap.put("Czy jest nowy?", isNew);
+        fieldMap.put("Czy ma gwarancje?", isWarranty);
 
         return fieldMap;
     }

@@ -23,7 +23,7 @@ public class MobilePhoneService {
         mobilePhone.setColor(mobilePhoneDTO.getColor());
         mobilePhone.setScreenSize(mobilePhoneDTO.getScreenSize());
         mobilePhone.setIsNew(mobilePhoneDTO.getIsNew());
-        mobilePhone.setRamMb(mobilePhoneDTO.getRamMb());
+        mobilePhone.setRamMb(mobilePhoneDTO.getRamGb());
         mobilePhone.setProcessor(mobilePhoneDTO.getProcessor());
         mobilePhone.setIsWarranty(mobilePhoneDTO.getIsWarranty());
         return mobilePhoneRepository.save(mobilePhone);

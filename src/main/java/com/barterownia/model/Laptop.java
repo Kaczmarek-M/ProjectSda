@@ -29,8 +29,8 @@ public class Laptop implements AuctionFields {
     private String name;
 
     private String processor;
-    private Long ramMb;
-    private Long hardDriveMb;
+    private Long ramGb;
+    private Long hardDriveGb;
     private Float screenSize;
     private String motherboard;
     private String graphicsCard;
@@ -49,15 +49,15 @@ public class Laptop implements AuctionFields {
     public Map<String, Object> getFieldMap() {
         Map<String, Object> fieldMap = new HashMap<>();
 
-        fieldMap.put("Processor", processor);
-        fieldMap.put("RAM", ramMb);
-        fieldMap.put("Hard Drive", hardDriveMb);
-        fieldMap.put("Screen Size", screenSize);
-        fieldMap.put("Motherboard", motherboard);
-        fieldMap.put("Graphics", graphicsCard);
-        fieldMap.put("Date of production", dateOfProduction);
-        fieldMap.put("Is new", isNew);
-        fieldMap.put("Has Warranty", isWarranty);
+        fieldMap.put("Procesor", processor);
+        fieldMap.put("Pamięć ram", ramGb + " " + "Gb");
+        fieldMap.put("Dysk twardy", hardDriveGb +" "+ "Gb");
+        fieldMap.put("Rozmiar ekranu", screenSize);
+        fieldMap.put("Płyta główna", motherboard);
+        fieldMap.put("Karta graficzna", graphicsCard);
+        fieldMap.put("Data produkcji", dateOfProduction);
+        fieldMap.put("Czy jest nowy?", isNew);
+        fieldMap.put("Czy ma gwarancje?", isWarranty);
 
         return fieldMap;
     }
