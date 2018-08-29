@@ -6,11 +6,14 @@ import com.barterownia.model.dto.AuthoritiesUserDTO;
 import com.barterownia.model.dto.NewUserDTO;
 import com.barterownia.service.AppUserService;
 import com.barterownia.service.AuctionService;
+import com.barterownia.service.EmailSenderService;
+import com.barterownia.service.interfaces.EmailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Email;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +27,9 @@ public class AppUserController {
 
     @Autowired
     private AuctionService auctionService;
+
+    @Autowired
+    private EmailSender emailSender;
 
     @GetMapping(path = "/register")
     public String getAddUser(Model model) {
@@ -47,6 +53,9 @@ public class AppUserController {
             model.addAttribute("failMsg", "Nazwa użytkownika zajęta!");
             return "/register";
         }
+
+        emailSender.sendEmail(newUserDto.getEmail(),"Witamy w Barterowni!","test content");
+
 
         return "redirect:/home?log=true";
     }
