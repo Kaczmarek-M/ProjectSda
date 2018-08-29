@@ -6,14 +6,24 @@ body {
     margin-top: 50px;
 }
 
+.content-margin {
+    margin-top: 55px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 .feather {
     width: 16px;
     height: 16px;
     vertical-align: text-bottom;
 }
 
-.form-stretched{
+.form-stretched {
     width: 100%;
+}
+
+.card:hover {
+    background-color: #f6f6f6;
 }
 
 /*
