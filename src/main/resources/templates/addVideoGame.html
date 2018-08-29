@@ -9,12 +9,12 @@
 <body>
 <div th:replace="header :: header"></div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
+<section id="main">
+    <div class="row content-margin">
+        <div class="col-md-3 col-lg-2">
             <div th:replace="sidebar::sidebar"></div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 col-lg-10">
             <form th:action="@{'/video_game/add?itemId=' + ${item_id}}" th:object="${video_game}" method="post">
                 <div class="row">
                     <div class="col-md-3">
@@ -54,11 +54,11 @@
                     </div>
                     <div class="col-md-9">
                         <select class="form-control" id="pegi" th:field="*{pegi}">
-                        <option th:value="3">3</option>
-                        <option th:value="7">7</option>
-                        <option th:value="12">12</option>
-                        <option th:value="16">16</option>
-                        <option th:value="18">18</option>
+                            <option th:value="3">3</option>
+                            <option th:value="7">7</option>
+                            <option th:value="12">12</option>
+                            <option th:value="16">16</option>
+                            <option th:value="18">18</option>
                         </select>
                     </div>
                 </div>
@@ -71,8 +71,7 @@
             </form>
         </div>
     </div>
-</div>
-
+</section>
 <div th:replace="fragments::scripts"></div>
 </body>
 

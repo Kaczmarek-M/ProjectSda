@@ -7,14 +7,15 @@
 </head>
 
 <body>
+
 <div th:replace="header :: header"></div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
+<section id="main">
+    <div class="row content-margin">
+        <div class="col-md-3 col-lg-2">
             <div th:replace="sidebar::sidebar"></div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 col-lg-10">
             <form th:action="@{'/laptop/add?itemId=' + ${item_id}}" th:object="${laptop}" method="post">
                 <div class="row">
                     <div class="col-md-3">
@@ -116,8 +117,7 @@
             </form>
         </div>
     </div>
-</div>
-
+</section>
 <div th:replace="fragments::scripts"></div>
 </body>
 
