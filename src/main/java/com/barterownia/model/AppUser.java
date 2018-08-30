@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@EqualsAndHashCode(of="id")
+@EqualsAndHashCode(of = "id")
 public class AppUser implements UserDetails {
 
     @Id
@@ -46,10 +46,19 @@ public class AppUser implements UserDetails {
         if (this.getPrivilege() > 2) {
             grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
+
         if (this.getPrivilege() > 1) {
             grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_RZECZOZNAWCA"));
         }
-        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+        if (this.getPrivilege() > 0) {
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+        }
+
+        if (this.getPrivilege() == 0) {
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_NONE"));
+        }
 
         return grantedAuthorities;
     }

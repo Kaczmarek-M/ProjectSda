@@ -35,22 +35,13 @@ public class AppUserService {
 
         AppUser newUser = new AppUser(appUser.getUsername(), bCryptPasswordEncoder.encode(appUser.getPassword()), 0);
         newUser.setContactDetails(new ContactDetails(appUser.getEmail()));
+        newUser.setPrivilege(0);
         contactDetailsRepository.save(newUser.getContactDetails());
         userRepository.save(newUser);
 
         return true;
     }
 
-    public Optional<AppUser> deleteUser(long id) {
-        Optional<AppUser> appUser = userRepository.findById(id);
-
-        if (appUser.isPresent()) {
-            userRepository.deleteById(appUser.get().getId());
-            return appUser;
-        }
-
-        return appUser;
-    }
 
     public Optional<AppUser> findOptionalByUsername(String username) {
         return userRepository.findAppUserByUsername(username);
@@ -62,20 +53,7 @@ public class AppUserService {
         return user;
     }
 
-    public Optional<AppUser> setUserPrivilege(long id, int privilege) {
-        Optional<AppUser> user = userRepository.findById(id);
 
-        if (!user.isPresent()) {
-            return Optional.empty();
-        }
-
-        AppUser appUser = user.get();
-
-        appUser.setPrivilege(privilege);
-
-        return Optional.of(userRepository.save(appUser));
-
-    }
 
     public void addAuction(AppUser user, Auction auction) {
         user.getAuctions().add(auction);
@@ -157,5 +135,9 @@ public class AppUserService {
         contactDetailsRepository.save(userDetails);
         user.setContactDetails(userDetails);
         return userRepository.save(user);
+    }
+
+    public Optional<AppUser> findByPassword(String code) {
+        return userRepository.findByPassword(code);
     }
 }

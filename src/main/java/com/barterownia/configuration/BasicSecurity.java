@@ -40,7 +40,8 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
                         "/auction/list/**",
                         "/auction/get/**",
                         "/user/register",
-                        "/user/login"
+                        "/user/login",
+                        "/user/activation/**"
                         ).permitAll()
                         .anyRequest()
                         .authenticated()

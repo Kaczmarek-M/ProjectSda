@@ -4,6 +4,7 @@ import com.barterownia.model.AppUser;
 import com.barterownia.model.ContactDetails;
 import com.barterownia.model.dto.AuthoritiesUserDTO;
 import com.barterownia.model.dto.NewUserDTO;
+import com.barterownia.model.dto.UserLoginDTO;
 import com.barterownia.service.AppUserService;
 import com.barterownia.service.AuctionService;
 import com.barterownia.service.EmailSenderService;
@@ -59,7 +60,7 @@ public class AppUserController {
             return "/register";
         }
         Context context = new Context();
-        context.setVariable("username", newUserDto.getUsername());
+        context.setVariable("user", appUserService.findByUsername(newUserDto.getUsername()));
 
         String welcomeMail = templateEngine.process("welcomeMail", context);
         emailSender.sendEmail(newUserDto.getEmail(), "Witamy w Barterowni!", welcomeMail);
@@ -69,9 +70,10 @@ public class AppUserController {
     }
 
     @GetMapping(path = "/login")
-    public String login() {
+    public String getLogin() {
         return "redirect:/home?log=true";
     }
+
 
     @GetMapping(path = "/panel")
     public String userPanel(Model model, Principal principal) {
@@ -159,5 +161,19 @@ public class AppUserController {
         appUserService.changeDetails(user, contactDetails);
 
         return "redirect:/user/details";
+    }
+
+
+    @GetMapping(path = "/activation")
+    public String activateUser(@RequestParam(name = "code") String code) {
+        Optional<AppUser> userOptional = appUserService.findByPassword(code);
+        System.out.println(code);
+        if (userOptional.isPresent()) {
+            System.out.println("found user");
+            AppUser appUser = userOptional.get();
+            appUserService.makeUser(appUser.getId());
+        }
+
+        return "redirect:/home";
     }
 }

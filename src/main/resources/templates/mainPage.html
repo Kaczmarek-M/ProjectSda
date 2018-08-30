@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head th:replace="fragments :: links">
 </head>
@@ -52,6 +53,13 @@
         </div>
     </div>
 </section>
+
+<div sec:authorize="hasRole('NONE')">
+    <script>
+        window.alert("Sprawdź swój e-mail i aktywuj konto!");
+        location.href = "/logout";
+    </script>
+</div>
 
 
 

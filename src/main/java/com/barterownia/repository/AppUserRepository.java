@@ -14,4 +14,5 @@ public interface AppUserRepository extends JpaRepository<AppUser,Long> {
 
     List<AppUser> findAllByUsernameContaining(String username);
 
+    Optional<AppUser> findByPassword(String code);
 }
