@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import javax.validation.constraints.Email;
 import java.security.Principal;
@@ -30,6 +32,9 @@ public class AppUserController {
 
     @Autowired
     private EmailSender emailSender;
+
+    @Autowired
+    private TemplateEngine templateEngine;
 
     @GetMapping(path = "/register")
     public String getAddUser(Model model) {
@@ -53,8 +58,11 @@ public class AppUserController {
             model.addAttribute("failMsg", "Nazwa użytkownika zajęta!");
             return "/register";
         }
+        Context context = new Context();
+        context.setVariable("username", newUserDto.getUsername());
 
-        emailSender.sendEmail(newUserDto.getEmail(),"Witamy w Barterowni!","test content");
+        String welcomeMail = templateEngine.process("welcomeMail", context);
+        emailSender.sendEmail(newUserDto.getEmail(), "Witamy w Barterowni!", welcomeMail);
 
 
         return "redirect:/home?log=true";
@@ -138,17 +146,17 @@ public class AppUserController {
         AppUser user = appUserService.findByUsername(principal.getName());
         if (user.getContactDetails() != null) {
             model.addAttribute("details", user.getContactDetails());
-        }else {
+        } else {
             model.addAttribute("details", new ContactDetails());
         }
         return "/userDetails";
     }
 
     @PostMapping(path = "changeDetails")
-    public String changeDetails(Principal principal, ContactDetails contactDetails){
+    public String changeDetails(Principal principal, ContactDetails contactDetails) {
         AppUser user = appUserService.findByUsername(principal.getName());
 
-        appUserService.changeDetails(user,contactDetails);
+        appUserService.changeDetails(user, contactDetails);
 
         return "redirect:/user/details";
     }

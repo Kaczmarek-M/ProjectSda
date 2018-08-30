@@ -25,7 +25,7 @@ public class EmailSenderService implements EmailSender {
             helper.setReplyTo("barterownia@gmail.com");
             helper.setFrom("barterownia@gmail.com");
             helper.setSubject(subject);
-            helper.setText(content);
+            helper.setText(content,true);
 
         } catch (MessagingException e) {
             e.printStackTrace();
